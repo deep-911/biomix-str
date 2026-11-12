@@ -1,0 +1,34 @@
+{
+  "rushton_elliptical_250rpm": {
+    "run_id": "fluent_rush_elli_250rpm_af88246294c0",
+    "verified": true
+  },
+  "rushton_hemi_250rpm": {
+    "run_id": "fluent_rush_hemi_250rpm_685d06cfca27",
+    "verified": true
+  },
+  "pbt_flat_220rpm": {
+    "run_id": "fluent_pitc_flat_220rpm_05afb991d9d4",
+    "verified": true
+  },
+  "pbt_unbaffled_vortex_220rpm": {
+    "run_id": "fluent_pitc_elli_220rpm_8c536769d748",
+    "verified": true
+  },
+  "hydrofoil_he3_viscous_500cp": {
+    "run_id": "fluent_hydr_elli_250rpm_43d61e397676",
+    "verified": true
+  },
+  "smith_cd6_high_400rpm": {
+    "run_id": "fluent_smit_flat_400rpm_d0992a970257",
+    "verified": true
+  },
+  "dual_smith_hydrofoil_hybrid": {
+    "run_id": "fluent_smit_flat_260rpm_6ba58aa1688a",
+    "verified": true
+  },
+  "dual_pbt_axial_220rpm": {
+    "run_id": "fluent_pitc_elli_220rpm_575975675a94",
+    "verified": true
+  }
+}

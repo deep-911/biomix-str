@@ -1,0 +1,51 @@
+{
+  "tank": {
+    "diameter_m": 0.4,
+    "liquid_height_m": 0.45,
+    "bottom_type": "flat",
+    "baffle_count": 4,
+    "baffle_width_ratio": 0.1,
+    "sparger_type": "ring",
+    "include_probes": false,
+    "include_cooling_jacket": false,
+    "impellers": [
+      {
+        "impeller_type": "rushton_6_blade",
+        "diameter_m": 0.14,
+        "clearance_m": 0.15,
+        "blade_width_m": 0.028000000000000004,
+        "blade_count": 6,
+        "flow_direction": "radial",
+        "swept_volume_m3": 0.00043102651207251974
+      }
+    ],
+    "baffle_width_m": 0.04000000000000001,
+    "is_baffled": true,
+    "aspect_ratio": 1.125,
+    "total_height_m": 0.5625,
+    "dish_depth_m": 0.0,
+    "working_volume_m3": 0.056548667764616284,
+    "cross_sectional_area_m2": 0.12566370614359174
+  },
+  "fluid": {
+    "name": "Water Broth",
+    "density_kg_m3": 1000.0,
+    "viscosity_pa_s": 0.001,
+    "coalescing_media": true,
+    "rheology_model": "newtonian",
+    "consistency_k_pa_s_n": null,
+    "flow_behavior_index_n": null,
+    "kinematic_viscosity_m2_s": 1e-06
+  },
+  "ops": {
+    "rpm": 120.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "microbial",
+    "rheology_model": "newtonian",
+    "consistency_k_pa_s_n": 5.0,
+    "flow_behavior_index_n": 0.85,
+    "rps": 2.0
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

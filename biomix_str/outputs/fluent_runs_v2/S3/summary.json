@@ -1,0 +1,20 @@
+{
+  "case_id": "S3",
+  "case_name": "2nd-Order Upwind on k & epsilon",
+  "n_cells": 35852,
+  "n_cells_mrf": 12755,
+  "n_cells_stationary": 23097,
+  "iterations_run": 720,
+  "converged": true,
+  "stop_reason": "Converged: continuity=9.98e-04 (<1e-3) & drift=0.03% (<1%) at iter 720",
+  "final_continuity": 0.00099848,
+  "torque_drift_pct": 0.03,
+  "power_w": 13.67,
+  "torque_nm": 0.5221,
+  "vessel_torque_nm": 0.491,
+  "angular_momentum_imbalance_pct": 5.96,
+  "np": 3.514,
+  "yplus_avg": 104.0,
+  "yplus_max": 457.8,
+  "wall_time_s": 151.2
+}

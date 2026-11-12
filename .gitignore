@@ -1,0 +1,79 @@
+# =============================================================================
+# BioMix-STR: .gitignore Configuration
+# =============================================================================
+
+# Python Byte-Compiled Files & Packaging
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Unit Test & Coverage Caches
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Ansys Fluent Runtime Scratch & Temporary Files
+cleanup-fluent-*.bat
+fluent-*.trn
+fluent-*.log
+*.trn
+*.cas.h5~*
+*.dat.h5~*
+fl_mpi*.exe
+fluent.exe.stackdump
+biomix_str/outputs/fluent_logs/
+
+# Local Documentation Archive & University Study Materials (Kept local, never pushed)
+docs/
+docs_local/
+course study material/
+*.pdf
+
+# Scratch & AI Agent Artifacts
+AI-workspace/
+scratch/
+.agents/
+graphify-out/
+*.log
+
+# Editor & OS Artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/

@@ -1,0 +1,42 @@
+{
+  "tank": {
+    "diameter_m": 0.4,
+    "liquid_height_m": 0.5,
+    "bottom_type": "hemispherical",
+    "baffle_count": 3,
+    "baffle_width_ratio": 0.0833,
+    "impellers": [
+      {
+        "impeller_type": "marine_propeller",
+        "diameter_m": 0.16,
+        "clearance_m": 0.16,
+        "blade_width_m": 0.04,
+        "blade_count": 3,
+        "flow_direction": "axial",
+        "swept_volume_m3": 0.0008042477193189871
+      }
+    ],
+    "baffle_width_m": 0.03332,
+    "is_baffled": true,
+    "aspect_ratio": 1.25,
+    "total_height_m": 0.625,
+    "dish_depth_m": 0.2,
+    "working_volume_m3": 0.05445427266222308,
+    "cross_sectional_area_m2": 0.12566370614359174
+  },
+  "fluid": {
+    "name": "Water Broth",
+    "density_kg_m3": 1000.0,
+    "viscosity_pa_s": 0.001,
+    "coalescing_media": true,
+    "kinematic_viscosity_m2_s": 1e-06
+  },
+  "ops": {
+    "rpm": 130.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "mammalian_cell",
+    "rps": 2.1666666666666665
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

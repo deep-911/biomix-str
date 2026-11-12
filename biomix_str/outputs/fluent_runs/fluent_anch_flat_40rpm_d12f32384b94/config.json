@@ -1,0 +1,45 @@
+{
+  "tank": {
+    "diameter_m": 0.4,
+    "liquid_height_m": 0.45,
+    "bottom_type": "flat",
+    "baffle_count": 0,
+    "baffle_width_ratio": 0.1,
+    "impellers": [
+      {
+        "impeller_type": "anchor",
+        "diameter_m": 0.36,
+        "clearance_m": 0.012,
+        "blade_width_m": 0.25,
+        "blade_count": 2,
+        "flow_direction": "close_clearance_tangential",
+        "swept_volume_m3": 0.025446900494077322
+      }
+    ],
+    "baffle_width_m": 0.0,
+    "is_baffled": false,
+    "aspect_ratio": 1.125,
+    "total_height_m": 0.5625,
+    "dish_depth_m": 0.0,
+    "working_volume_m3": 0.056548667764616284,
+    "cross_sectional_area_m2": 0.12566370614359174
+  },
+  "fluid": {
+    "name": "High-Viscosity Bio-Polymer Broth (5,000 cP)",
+    "density_kg_m3": 1050.0,
+    "viscosity_pa_s": 5.0,
+    "coalescing_media": true,
+    "rheology_model": "power_law",
+    "consistency_k_pa_s_n": 5.0,
+    "flow_behavior_index_n": 0.85,
+    "kinematic_viscosity_m2_s": 0.004761904761904762
+  },
+  "ops": {
+    "rpm": 40.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "microbial",
+    "rps": 0.6666666666666666
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

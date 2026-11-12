@@ -1,0 +1,20 @@
+{
+  "case_id": "S5",
+  "case_name": "Lower Under-Relaxation Factors (P=0.2, Mom=0.5, Turb=0.6)",
+  "n_cells": 35852,
+  "n_cells_mrf": 12755,
+  "n_cells_stationary": 23097,
+  "iterations_run": 2000,
+  "converged": false,
+  "stop_reason": "Hard cap reached (2000 iterations)",
+  "final_continuity": 0.0017089,
+  "torque_drift_pct": 0.04,
+  "power_w": 13.5,
+  "torque_nm": 0.5156,
+  "vessel_torque_nm": 0.4803,
+  "angular_momentum_imbalance_pct": 6.85,
+  "np": 3.47,
+  "yplus_avg": 96.8,
+  "yplus_max": 415.9,
+  "wall_time_s": 438.2
+}

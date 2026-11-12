@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: biomix-str
+Version: 0.1.0
+Summary: BioMix-STR: Bioprocess Engineering stirred-tank bioreactor simulation suite
+Requires-Python: >=3.10
+Description-Content-Type: text/plain
+Requires-Dist: ansys-fluent-core
+Requires-Dist: fastapi
+Requires-Dist: gmsh
+Requires-Dist: numpy
+Requires-Dist: pyvista
+Requires-Dist: scipy
+Requires-Dist: pydantic
+Requires-Dist: matplotlib
+Requires-Dist: pytest
+Requires-Dist: uvicorn
+
+BioMix-STR: Bioprocess Engineering stirred-tank bioreactor simulation suite

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "run_id": "fluent_mari_hemi_130rpm_51527ba4791c",
+  "solver": "Ansys Fluent 2026 R1 via PyFluent",
+  "physics_scope": "single_phase_steady_mrf",
+  "verified": true,
+  "classification": "verified_fluent_result",
+  "label": "Verified Fluent Result (Ansys Fluent 2026 R1)",
+  "warnings": [],
+  "config_sha256": "ec3b6f755549f37ae0d613b00c2f39e720bb08cfbb23a85a9dc45c8e711b46c5",
+  "mesh_density": "fast",
+  "iterations_requested": 15,
+  "iterations_computed": 95,
+  "converged": true,
+  "native_case_data_written": true,
+  "cfd_metrics": {
+    "torque_n_m": 0.0191,
+    "power_w": 0.26,
+    "power_number_np": 0.244,
+    "mean_velocity_m_s": 0.1174,
+    "max_velocity_m_s": 0.8416,
+    "dead_zone_fraction": 0.1417,
+    "provenance": "fluent_solver"
+  },
+  "engineering_reference_metrics": {
+    "torque_n_m": 0.0274,
+    "power_w": 0.37,
+    "power_number_np": 0.35,
+    "provenance": "engineering_reference"
+  },
+  "metric_sources": {
+    "cfd_max_velocity_m_s": "fluent_field",
+    "cfd_mean_velocity_m_s": "fluent_field",
+    "cfd_min_pressure_pa": "fluent_field",
+    "cfd_max_pressure_pa": "fluent_field",
+    "cfd_mean_tke_m2_s2": "fluent_field",
+    "cfd_mean_epsilon_m2_s3": "fluent_field",
+    "cfd_power_w": "fluent_solver",
+    "cfd_torque_n_m": "fluent_solver"
+  },
+  "convergence": {
+    "converged": true,
+    "torque_drift_pct": 1.5145,
+    "velocity_drift_pct": 0.0,
+    "continuity_converged": true,
+    "window_size": 3
+  },
+  "convergence_monitoring": {
+    "monitored_torque_history": [
+      0.0489,
+      0.0629,
+      0.0524,
+      0.0398,
+      0.0307,
+      0.0251,
+      0.0217,
+      0.02,
+      0.0195,
+      0.0189,
+      0.0187
+    ],
+    "torque_drift_pct": 1.5145,
+    "final_continuity_residual": 0.1186,
+    "converged": true
+  },
+  "artifacts": {
+    "mesh": "fluent_fluent_m_mrf.bdf",
+    "field_export": "fluent_internal_field.vtp",
+    "case_file": "fluent_case.cas.h5",
+    "data_file": "fluent_case.dat.h5",
+    "metadata": "metadata.json",
+    "web_bundle": "web_3d_bundle.json",
+    "configuration": "config.json",
+    "manifest": "run_manifest.json"
+  }
+}

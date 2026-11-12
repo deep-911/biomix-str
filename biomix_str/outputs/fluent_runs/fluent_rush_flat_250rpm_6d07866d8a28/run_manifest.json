@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "run_id": "fluent_rush_flat_250rpm_6d07866d8a28",
+  "solver": "Ansys Fluent 2026 R1 via PyFluent",
+  "physics_scope": "single_phase_steady_mrf",
+  "readiness_tier": "live_cfd_mvp",
+  "verified": true,
+  "classification": "verified_fluent_result",
+  "label": "Verified Fluent Result (Ansys Fluent 2026 R1)",
+  "warnings": [],
+  "config_sha256": "670588fa7b293603324377f5ea47c9e9c7d9b495935b91fb29d68f61a26948d0",
+  "mesh_density": "fine",
+  "iterations_requested": 160,
+  "iterations_computed": 160,
+  "converged": true,
+  "native_case_data_written": true,
+  "rheology": {
+    "model": "newtonian",
+    "consistency_k": null,
+    "flow_index_n": null,
+    "effective_viscosity_pa_s": 0.001
+  },
+  "re_i": 81666.7,
+  "cfd_metrics": {
+    "torque_n_m": 0.4182,
+    "power_w": 10.95,
+    "power_number_np": 2.814,
+    "mean_velocity_m_s": 0.248,
+    "max_velocity_m_s": 1.7835,
+    "dead_zone_fraction": 0.2276,
+    "provenance": "fluent_solver"
+  },
+  "engineering_reference_metrics": {
+    "torque_n_m": 0.743,
+    "power_w": 19.45,
+    "power_number_np": 5.0,
+    "provenance": "engineering_reference"
+  },
+  "metric_sources": {
+    "cfd_max_velocity_m_s": "fluent_field",
+    "cfd_mean_velocity_m_s": "fluent_field",
+    "cfd_min_pressure_pa": "fluent_field",
+    "cfd_max_pressure_pa": "fluent_field",
+    "cfd_mean_tke_m2_s2": "fluent_field",
+    "cfd_mean_epsilon_m2_s3": "fluent_field",
+    "cfd_power_w": "fluent_solver",
+    "cfd_torque_n_m": "fluent_solver"
+  },
+  "convergence": {
+    "continuity_residual": 0.0033878,
+    "max_residual": 0.0038642,
+    "torque_drift_pct": 0.96,
+    "net_mass_imbalance_pct": 0.0,
+    "converged": true
+  },
+  "convergence_monitoring": {
+    "monitored_torque_history": [
+      0.1329,
+      0.3035,
+      0.4247,
+      0.49,
+      0.5147,
+      0.5132,
+      0.4963,
+      0.4722,
+      0.4486,
+      0.4334,
+      0.4231,
+      0.4158,
+      0.4142,
+      0.4182
+    ],
+    "torque_drift_pct": 0.96,
+    "final_continuity_residual": 0.0033878,
+    "converged": true
+  },
+  "artifacts": {
+    "mesh": "fluent_fluent_r_mrf.bdf",
+    "field_export": "fluent_internal_field.vtp",
+    "case_file": "fluent_case.cas.h5",
+    "data_file": "fluent_case.dat.h5",
+    "metadata": "metadata.json",
+    "web_bundle": "web_3d_bundle.json",
+    "configuration": "config.json",
+    "manifest": "run_manifest.json"
+  }
+}

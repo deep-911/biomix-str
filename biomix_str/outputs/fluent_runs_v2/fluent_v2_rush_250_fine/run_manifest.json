@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "run_id": "fluent_v2_rush_250_fine",
+  "solver": "Ansys Fluent 2026 R1 via PyFluent",
+  "physics_scope": "single_phase_steady_mrf",
+  "readiness_tier": "live_cfd_mvp",
+  "verified": false,
+  "classification": "engineering_reference",
+  "label": "Unverified Solver Run (Unconverged)",
+  "warnings": [],
+  "config_sha256": "aca2186e8460d2a44eed4d40d5b0e18c284039101f6b500b49f7136c6b250ecd",
+  "mesh_density": "fine",
+  "iterations_requested": 600,
+  "iterations_computed": 600,
+  "converged": false,
+  "native_case_data_written": true,
+  "rheology": {
+    "model": "newtonian",
+    "consistency_k": null,
+    "flow_index_n": null,
+    "effective_viscosity_pa_s": 0.001
+  },
+  "re_i": 81666.7,
+  "cfd_metrics": {
+    "torque_n_m": 0.5444,
+    "power_w": 14.25,
+    "power_number_np": 3.663,
+    "mean_velocity_m_s": 0.3967,
+    "max_velocity_m_s": 2.0684,
+    "dead_zone_fraction": 0.0057,
+    "provenance": "fluent_solver"
+  },
+  "engineering_reference_metrics": {
+    "torque_n_m": 0.743,
+    "power_w": 19.45,
+    "power_number_np": 5.0,
+    "provenance": "engineering_reference"
+  },
+  "metric_sources": {
+    "cfd_max_velocity_m_s": "fluent_field",
+    "cfd_mean_velocity_m_s": "fluent_field",
+    "cfd_min_pressure_pa": "fluent_field",
+    "cfd_max_pressure_pa": "fluent_field",
+    "cfd_mean_tke_m2_s2": "fluent_field",
+    "cfd_mean_epsilon_m2_s3": "fluent_field",
+    "cfd_power_w": "fluent_solver",
+    "cfd_torque_n_m": "fluent_solver"
+  },
+  "convergence": {
+    "continuity_residual": 0.0051733,
+    "max_residual": 0.0051733,
+    "torque_drift_pct": 13.3419,
+    "net_mass_imbalance_pct": 0.0,
+    "converged": false
+  },
+  "convergence_monitoring": {
+    "monitored_torque_history": [
+      0.1771,
+      0.3706,
+      0.4765,
+      0.5106,
+      0.5032,
+      0.4755,
+      0.445,
+      0.4303,
+      0.4433,
+      0.4816,
+      0.5346,
+      0.5728,
+      0.5606,
+      0.5449,
+      0.5401,
+      0.5375,
+      0.5433,
+      0.5456,
+      0.5435,
+      0.5432,
+      0.5434,
+      0.5439,
+      0.5444,
+      0.5442,
+      0.5443,
+      0.5444,
+      0.5442,
+      0.5442,
+      0.5443,
+      0.5444
+    ],
+    "torque_drift_pct": 13.34,
+    "final_continuity_residual": 0.0051733,
+    "converged": false
+  },
+  "artifacts": {
+    "mesh": "fluent_fluent_v_mrf.bdf",
+    "field_export": "fluent_internal_field.vtp",
+    "case_file": "fluent_case.cas.h5",
+    "data_file": "fluent_case.dat.h5",
+    "metadata": "metadata.json",
+    "web_bundle": "web_3d_bundle.json",
+    "configuration": "config.json",
+    "manifest": "run_manifest.json"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "tank": {
+    "diameter_m": 0.45,
+    "liquid_height_m": 0.55,
+    "bottom_type": "elliptical_2_1",
+    "baffle_count": 4,
+    "baffle_width_ratio": 0.1,
+    "sparger_type": "ring",
+    "include_probes": false,
+    "include_cooling_jacket": false,
+    "impellers": [
+      {
+        "impeller_type": "hydrofoil_he3",
+        "diameter_m": 0.16,
+        "clearance_m": 0.15,
+        "blade_width_m": 0.02666666666666667,
+        "blade_count": 3,
+        "flow_direction": "axial",
+        "swept_volume_m3": 0.0005361651462126581
+      }
+    ],
+    "baffle_width_m": 0.045000000000000005,
+    "is_baffled": true,
+    "aspect_ratio": 1.2222222222222223,
+    "total_height_m": 0.6875,
+    "dish_depth_m": 0.1125,
+    "working_volume_m3": 0.08150960314509145,
+    "cross_sectional_area_m2": 0.1590431280879833
+  },
+  "fluid": {
+    "name": "500 cP Transitional Broth",
+    "density_kg_m3": 1040.0,
+    "viscosity_pa_s": 0.5,
+    "coalescing_media": true,
+    "rheology_model": "newtonian",
+    "consistency_k_pa_s_n": null,
+    "flow_behavior_index_n": null,
+    "kinematic_viscosity_m2_s": 0.0004807692307692308
+  },
+  "ops": {
+    "rpm": 250.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "microbial",
+    "rheology_model": "newtonian",
+    "consistency_k_pa_s_n": 5.0,
+    "flow_behavior_index_n": 0.85,
+    "rps": 4.166666666666667
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

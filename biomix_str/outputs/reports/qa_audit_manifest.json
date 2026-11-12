@@ -1,0 +1,240 @@
+{
+  "timestamp": "2026-10-15 16:51:31",
+  "summary": {
+    "total_issues": 0,
+    "critical": 0,
+    "warning": 0,
+    "polish": 0
+  },
+  "audit_1_physics_and_cached_metadata": {
+    "status": "PASSED",
+    "cached_summary": [
+      {
+        "run_id": "fluent_mari_hemi_130rpm_51527ba4791c",
+        "cfd_power_w": 0.37,
+        "cfd_torque_n_m": 0.0274,
+        "cfd_max_velocity_m_s": 2.3005,
+        "dead_zone_fraction": 0.0872,
+        "tip_speed_m_s": 1.089,
+        "num_streamlines": 90,
+        "num_vectors_3d": 434
+      },
+      {
+        "run_id": "fluent_pitc_elli_220rpm_432bbc081267",
+        "cfd_power_w": 7.75,
+        "cfd_torque_n_m": 0.3366,
+        "cfd_max_velocity_m_s": 2.5125,
+        "dead_zone_fraction": 0.0799,
+        "tip_speed_m_s": 1.843,
+        "num_streamlines": 90,
+        "num_vectors_3d": 468
+      },
+      {
+        "run_id": "fluent_rush_flat_250rpm_c5abfce9ad1c",
+        "cfd_power_w": 19.45,
+        "cfd_torque_n_m": 0.743,
+        "cfd_max_velocity_m_s": 1.7923,
+        "dead_zone_fraction": 0.0559,
+        "tip_speed_m_s": 1.833,
+        "num_streamlines": 90,
+        "num_vectors_3d": 486
+      },
+      {
+        "run_id": "fluent_rush_flat_260rpm_c0ff9b8ebcd1",
+        "cfd_power_w": 10.91,
+        "cfd_torque_n_m": 0.4006,
+        "cfd_max_velocity_m_s": 2.0678,
+        "dead_zone_fraction": 0.0362,
+        "tip_speed_m_s": 2.042,
+        "num_streamlines": 90,
+        "num_vectors_3d": 486
+      },
+      {
+        "run_id": "fluent_rush_flat_280rpm_1f9d1ae137f1",
+        "cfd_power_w": 50.16,
+        "cfd_torque_n_m": 1.7108,
+        "cfd_max_velocity_m_s": 5.2643,
+        "dead_zone_fraction": 0.0397,
+        "tip_speed_m_s": 2.199,
+        "num_streamlines": 114,
+        "num_vectors_3d": 486
+      },
+      {
+        "run_id": "fluent_rush_flat_280rpm_dd6c74f598ba",
+        "cfd_power_w": 48.43,
+        "cfd_torque_n_m": 1.6516,
+        "cfd_max_velocity_m_s": 4.261,
+        "dead_zone_fraction": 0.0618,
+        "tip_speed_m_s": 2.199,
+        "num_streamlines": 114,
+        "num_vectors_3d": 486
+      }
+    ],
+    "preview_summary": [
+      {
+        "impeller": "rushton_6_blade",
+        "power_w": 38.5875,
+        "torque_nm": 1.3160124356911094,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 10.5214200124352,
+        "kla": 53.40009444146342,
+        "status": "OK"
+      },
+      {
+        "impeller": "smith_cd6",
+        "power_w": 24.696,
+        "torque_nm": 0.8422479588423102,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 12.028746312839722,
+        "kla": 45.474383053086406,
+        "status": "OK"
+      },
+      {
+        "impeller": "flat_blade_fbt",
+        "power_w": 30.869999999999997,
+        "torque_nm": 1.0528099485528875,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 11.249866318335433,
+        "kla": 49.27815286414556,
+        "status": "OK"
+      },
+      {
+        "impeller": "paddle_r200",
+        "power_w": 19.29375,
+        "torque_nm": 0.6580062178455547,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 12.953387468764992,
+        "kla": 41.607462139313846,
+        "status": "OK"
+      },
+      {
+        "impeller": "curved_backswept",
+        "power_w": 30.869999999999997,
+        "torque_nm": 1.0528099485528875,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 11.249866318335433,
+        "kla": 49.27815286414556,
+        "status": "OK"
+      },
+      {
+        "impeller": "retreat_blade",
+        "power_w": 23.92425,
+        "torque_nm": 0.8159277101284879,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 12.14386277358216,
+        "kla": 44.95759113499711,
+        "status": "OK"
+      },
+      {
+        "impeller": "marine_propeller",
+        "power_w": 2.701125,
+        "torque_nm": 0.09212087049837767,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 23.363878864345562,
+        "kla": 20.501107339274892,
+        "status": "OK"
+      },
+      {
+        "impeller": "pitched_blade_45",
+        "power_w": 11.576249999999998,
+        "torque_nm": 0.39480373070733277,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 15.098645256278537,
+        "kla": 34.6182951878981,
+        "status": "OK"
+      },
+      {
+        "impeller": "hydrofoil_he3",
+        "power_w": 2.238075,
+        "torque_nm": 0.07632872127008435,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 24.71985732428838,
+        "kla": 19.15914405285911,
+        "status": "OK"
+      },
+      {
+        "impeller": "maxflo_high_solidity",
+        "power_w": 25.467749999999995,
+        "torque_nm": 0.8685682075561321,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 11.91821394473483,
+        "kla": 45.98093962791711,
+        "status": "OK"
+      },
+      {
+        "impeller": "intermig_ekato",
+        "power_w": 5.016375,
+        "torque_nm": 0.17108161663984423,
+        "tip_speed_m_s": 2.199114857512855,
+        "reynolds": 105000.0,
+        "theta_95_s": 19.404003852585667,
+        "kla": 25.618968041884848,
+        "status": "OK"
+      },
+      {
+        "impeller": "anchor",
+        "power_w": 152.1184188161746,
+        "torque_nm": 32.28053105322316,
+        "tip_speed_m_s": 0.9754645189396307,
+        "reynolds": 5.14188,
+        "theta_95_s": 19.12233803931987,
+        "kla": 108.94000575277082,
+        "status": "OK"
+      },
+      {
+        "impeller": "helical_ribbon",
+        "power_w": 307.6137498890467,
+        "torque_nm": 65.27766514383434,
+        "tip_speed_m_s": 0.9754645189396307,
+        "reynolds": 5.14188,
+        "theta_95_s": 15.480814576375924,
+        "kla": 140.3731393644384,
+        "status": "OK"
+      },
+      {
+        "impeller": "auger_screw",
+        "power_w": 208.08056541635688,
+        "torque_nm": 44.156067396492915,
+        "tip_speed_m_s": 0.9754645189396307,
+        "reynolds": 5.14188,
+        "theta_95_s": 17.407086050711833,
+        "kla": 121.94536330662626,
+        "status": "OK"
+      },
+      {
+        "impeller": "gate_impeller",
+        "power_w": 182.77658880506286,
+        "torque_nm": 38.786396786400715,
+        "tip_speed_m_s": 0.9754645189396307,
+        "reynolds": 5.14188,
+        "theta_95_s": 18.09753235315106,
+        "kla": 116.38401875262431,
+        "status": "OK"
+      },
+      {
+        "impeller": "sigma_z_kneader",
+        "power_w": 402.22771770781816,
+        "torque_nm": 85.35537269569433,
+        "tip_speed_m_s": 0.9754645189396307,
+        "reynolds": 5.14188,
+        "theta_95_s": 14.284134589517539,
+        "kla": 154.600844915057,
+        "status": "OK"
+      }
+    ],
+    "issues": []
+  },
+  "audit_2_unrendered_math": [],
+  "audit_3_dead_controls": [],
+  "audit_4_layout_overlaps": []
+}

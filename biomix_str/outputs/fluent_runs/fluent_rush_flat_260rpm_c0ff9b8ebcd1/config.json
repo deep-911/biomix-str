@@ -1,0 +1,42 @@
+{
+  "tank": {
+    "diameter_m": 0.45,
+    "liquid_height_m": 0.5,
+    "bottom_type": "flat",
+    "baffle_count": 0,
+    "baffle_width_ratio": 0.1,
+    "impellers": [
+      {
+        "impeller_type": "rushton_6_blade",
+        "diameter_m": 0.15,
+        "clearance_m": 0.16,
+        "blade_width_m": 0.03,
+        "blade_count": 6,
+        "flow_direction": "radial",
+        "swept_volume_m3": 0.0005301437602932776
+      }
+    ],
+    "baffle_width_m": 0.0,
+    "is_baffled": false,
+    "aspect_ratio": 1.1111111111111112,
+    "total_height_m": 0.625,
+    "dish_depth_m": 0.0,
+    "working_volume_m3": 0.07952156404399165,
+    "cross_sectional_area_m2": 0.1590431280879833
+  },
+  "fluid": {
+    "name": "Water Broth",
+    "density_kg_m3": 1000.0,
+    "viscosity_pa_s": 0.001,
+    "coalescing_media": true,
+    "kinematic_viscosity_m2_s": 1e-06
+  },
+  "ops": {
+    "rpm": 260.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "microbial",
+    "rps": 4.333333333333333
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

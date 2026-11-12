@@ -1,0 +1,20 @@
+{
+  "case_id": "S0",
+  "case_name": "Baseline (Realizable k-eps, MRF 0.62 Di, Std URF)",
+  "n_cells": 35852,
+  "n_cells_mrf": 12755,
+  "n_cells_stationary": 23097,
+  "iterations_run": 2000,
+  "converged": false,
+  "stop_reason": "Hard cap reached (2000 iterations)",
+  "final_continuity": 0.0024363,
+  "torque_drift_pct": 0.02,
+  "power_w": 13.53,
+  "torque_nm": 0.5167,
+  "vessel_torque_nm": 0.4812,
+  "angular_momentum_imbalance_pct": 6.86,
+  "np": 3.477,
+  "yplus_avg": 97.0,
+  "yplus_max": 415.8,
+  "wall_time_s": 395.7
+}

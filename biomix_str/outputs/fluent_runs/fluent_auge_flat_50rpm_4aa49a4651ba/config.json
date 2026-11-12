@@ -1,0 +1,51 @@
+{
+  "tank": {
+    "diameter_m": 0.4,
+    "liquid_height_m": 0.45,
+    "bottom_type": "flat",
+    "baffle_count": 0,
+    "baffle_width_ratio": 0.1,
+    "sparger_type": "ring",
+    "include_probes": false,
+    "include_cooling_jacket": false,
+    "impellers": [
+      {
+        "impeller_type": "auger_screw",
+        "diameter_m": 0.24,
+        "clearance_m": 0.016,
+        "blade_width_m": 0.18,
+        "blade_count": 1,
+        "flow_direction": "close_clearance_tangential",
+        "swept_volume_m3": 0.008143008158104743
+      }
+    ],
+    "baffle_width_m": 0.0,
+    "is_baffled": false,
+    "aspect_ratio": 1.125,
+    "total_height_m": 0.5625,
+    "dish_depth_m": 0.0,
+    "working_volume_m3": 0.056548667764616284,
+    "cross_sectional_area_m2": 0.12566370614359174
+  },
+  "fluid": {
+    "name": "25,000 cP Fermentation Bio-Paste",
+    "density_kg_m3": 1100.0,
+    "viscosity_pa_s": 25.0,
+    "coalescing_media": true,
+    "rheology_model": "power_law",
+    "consistency_k_pa_s_n": 25.0,
+    "flow_behavior_index_n": 0.55,
+    "kinematic_viscosity_m2_s": 0.022727272727272728
+  },
+  "ops": {
+    "rpm": 50.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "microbial",
+    "rheology_model": "power_law",
+    "consistency_k_pa_s_n": 25.0,
+    "flow_behavior_index_n": 0.55,
+    "rps": 0.8333333333333334
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

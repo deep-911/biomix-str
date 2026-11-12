@@ -1,0 +1,820 @@
+{
+  "run_id": "fluent_retr_elli_200rpm_409fa03695fc",
+  "run_dir": "C:\\Users\\iPC\\Downloads\\Code\\BioMix - STR\\biomix_str\\outputs\\fluent_runs\\fluent_retr_elli_200rpm_409fa03695fc",
+  "cached": false,
+  "solver_source": "ansys_fluent_2026_r1_3d",
+  "n_cells": 10345,
+  "n_nodes": 2590,
+  "meshing_time_s": 2.55,
+  "solve_time_s": 27.54,
+  "omega_rad_s": 20.944,
+  "rpm": 200.0,
+  "tip_speed_m_s": 1.676,
+  "cfd_max_velocity_m_s": 1.6239,
+  "cfd_mean_velocity_m_s": 0.2562,
+  "cfd_min_pressure_pa": -1337.06,
+  "cfd_max_pressure_pa": 884.76,
+  "cfd_mean_tke_m2_s2": 0.01823,
+  "cfd_mean_epsilon_m2_s3": 2.50659,
+  "cfd_max_epsilon_m2_s3": 413.87213,
+  "cfd_kolmogorov_min_um": 7.01,
+  "cfd_max_shear_stress_pa": 0.0,
+  "cfd_dead_zone_fraction": 0.1504,
+  "cfd_power_w": 7.46,
+  "cfd_torque_n_m": 0.3563,
+  "cfd_power_number_np": 1.922,
+  "ref_power_w": 12.04,
+  "ref_torque_n_m": 0.5748,
+  "converged": true,
+  "torque_drift_pct": 0.53,
+  "warnings": [],
+  "metric_sources": {
+    "cfd_max_velocity_m_s": "fluent_field",
+    "cfd_mean_velocity_m_s": "fluent_field",
+    "cfd_min_pressure_pa": "fluent_field",
+    "cfd_max_pressure_pa": "fluent_field",
+    "cfd_mean_tke_m2_s2": "fluent_field",
+    "cfd_mean_epsilon_m2_s3": "fluent_field",
+    "cfd_power_w": "fluent_solver",
+    "cfd_torque_n_m": "fluent_solver"
+  },
+  "bpe_metrics": {
+    "re_i": 85333.3,
+    "flow_regime": "turbulent",
+    "np_val": 3.1,
+    "ungassed_power_w": 12.04,
+    "gassed_power_w": 6.19,
+    "mixing_time_95_s": 14.45,
+    "kla_h_inv": 34.22,
+    "vortex_depth_m": 0.0,
+    "circulation_time_s": 7.92
+  },
+  "residuals": [
+    {
+      "iteration": 1,
+      "continuity": 1.0,
+      "x_velocity": 0.0338,
+      "y_velocity": 0.033291,
+      "z_velocity": 0.0072008,
+      "k": 0.0066476,
+      "epsilon": 8.6627
+    },
+    {
+      "iteration": 2,
+      "continuity": 1.0,
+      "x_velocity": 0.035857,
+      "y_velocity": 0.034949,
+      "z_velocity": 0.028627,
+      "k": 0.013598,
+      "epsilon": 0.64715
+    },
+    {
+      "iteration": 3,
+      "continuity": 0.6207,
+      "x_velocity": 0.028355,
+      "y_velocity": 0.030451,
+      "z_velocity": 0.021389,
+      "k": 0.011679,
+      "epsilon": 0.67368
+    },
+    {
+      "iteration": 4,
+      "continuity": 0.46014,
+      "x_velocity": 0.019915,
+      "y_velocity": 0.021078,
+      "z_velocity": 0.014165,
+      "k": 0.0089653,
+      "epsilon": 0.57192
+    },
+    {
+      "iteration": 5,
+      "continuity": 0.33791,
+      "x_velocity": 0.016898,
+      "y_velocity": 0.017378,
+      "z_velocity": 0.010536,
+      "k": 0.0099395,
+      "epsilon": 0.60118
+    },
+    {
+      "iteration": 6,
+      "continuity": 0.27336,
+      "x_velocity": 0.013703,
+      "y_velocity": 0.01455,
+      "z_velocity": 0.0075079,
+      "k": 0.0080159,
+      "epsilon": 0.30293
+    },
+    {
+      "iteration": 7,
+      "continuity": 0.21625,
+      "x_velocity": 0.011649,
+      "y_velocity": 0.012764,
+      "z_velocity": 0.0057838,
+      "k": 0.0076875,
+      "epsilon": 0.4344
+    },
+    {
+      "iteration": 7,
+      "continuity": 0.21625,
+      "x_velocity": 0.011649,
+      "y_velocity": 0.012764,
+      "z_velocity": 0.0057838,
+      "k": 0.0076875,
+      "epsilon": 0.4344
+    },
+    {
+      "iteration": 8,
+      "continuity": 0.19494,
+      "x_velocity": 0.010087,
+      "y_velocity": 0.010707,
+      "z_velocity": 0.0045629,
+      "k": 0.0083037,
+      "epsilon": 0.33909
+    },
+    {
+      "iteration": 9,
+      "continuity": 0.16357,
+      "x_velocity": 0.01003,
+      "y_velocity": 0.010708,
+      "z_velocity": 0.0042412,
+      "k": 0.0092772,
+      "epsilon": 0.70056
+    },
+    {
+      "iteration": 10,
+      "continuity": 0.14527,
+      "x_velocity": 0.0087061,
+      "y_velocity": 0.0090839,
+      "z_velocity": 0.003547,
+      "k": 0.0086671,
+      "epsilon": 0.47534
+    },
+    {
+      "iteration": 11,
+      "continuity": 0.13229,
+      "x_velocity": 0.0079299,
+      "y_velocity": 0.0085379,
+      "z_velocity": 0.0032026,
+      "k": 0.0090111,
+      "epsilon": 0.18101
+    },
+    {
+      "iteration": 12,
+      "continuity": 0.11693,
+      "x_velocity": 0.0072063,
+      "y_velocity": 0.0078533,
+      "z_velocity": 0.0029944,
+      "k": 0.0095301,
+      "epsilon": 0.1105
+    },
+    {
+      "iteration": 13,
+      "continuity": 0.10524,
+      "x_velocity": 0.0066343,
+      "y_velocity": 0.0074004,
+      "z_velocity": 0.002741,
+      "k": 0.0099988,
+      "epsilon": 0.15071
+    },
+    {
+      "iteration": 14,
+      "continuity": 0.092932,
+      "x_velocity": 0.0061408,
+      "y_velocity": 0.0068776,
+      "z_velocity": 0.0026706,
+      "k": 0.010535,
+      "epsilon": 0.064125
+    },
+    {
+      "iteration": 14,
+      "continuity": 0.092932,
+      "x_velocity": 0.0061408,
+      "y_velocity": 0.0068776,
+      "z_velocity": 0.0026706,
+      "k": 0.010535,
+      "epsilon": 0.064125
+    },
+    {
+      "iteration": 15,
+      "continuity": 0.087495,
+      "x_velocity": 0.0057028,
+      "y_velocity": 0.006158,
+      "z_velocity": 0.0025138,
+      "k": 0.010998,
+      "epsilon": 0.047358
+    },
+    {
+      "iteration": 16,
+      "continuity": 0.082834,
+      "x_velocity": 0.0053543,
+      "y_velocity": 0.0059272,
+      "z_velocity": 0.002443,
+      "k": 0.011481,
+      "epsilon": 0.045904
+    },
+    {
+      "iteration": 17,
+      "continuity": 0.078725,
+      "x_velocity": 0.0048801,
+      "y_velocity": 0.0052864,
+      "z_velocity": 0.0023791,
+      "k": 0.011951,
+      "epsilon": 0.095945
+    },
+    {
+      "iteration": 18,
+      "continuity": 0.075408,
+      "x_velocity": 0.0044761,
+      "y_velocity": 0.0046692,
+      "z_velocity": 0.0023431,
+      "k": 0.01245,
+      "epsilon": 0.053426
+    },
+    {
+      "iteration": 19,
+      "continuity": 0.071216,
+      "x_velocity": 0.004312,
+      "y_velocity": 0.0046721,
+      "z_velocity": 0.0023391,
+      "k": 0.012819,
+      "epsilon": 0.063955
+    },
+    {
+      "iteration": 20,
+      "continuity": 0.066872,
+      "x_velocity": 0.004058,
+      "y_velocity": 0.0044421,
+      "z_velocity": 0.0023088,
+      "k": 0.013494,
+      "epsilon": 0.065935
+    },
+    {
+      "iteration": 21,
+      "continuity": 0.06525,
+      "x_velocity": 0.0037754,
+      "y_velocity": 0.0039264,
+      "z_velocity": 0.0022758,
+      "k": 0.013848,
+      "epsilon": 0.04864
+    },
+    {
+      "iteration": 21,
+      "continuity": 0.06525,
+      "x_velocity": 0.0037754,
+      "y_velocity": 0.0039264,
+      "z_velocity": 0.0022758,
+      "k": 0.013848,
+      "epsilon": 0.04864
+    },
+    {
+      "iteration": 22,
+      "continuity": 0.063338,
+      "x_velocity": 0.0036107,
+      "y_velocity": 0.0037379,
+      "z_velocity": 0.0022696,
+      "k": 0.014168,
+      "epsilon": 0.031977
+    },
+    {
+      "iteration": 23,
+      "continuity": 0.061542,
+      "x_velocity": 0.0035139,
+      "y_velocity": 0.0036846,
+      "z_velocity": 0.0022604,
+      "k": 0.014474,
+      "epsilon": 0.038991
+    },
+    {
+      "iteration": 24,
+      "continuity": 0.059284,
+      "x_velocity": 0.0033026,
+      "y_velocity": 0.0034201,
+      "z_velocity": 0.0022431,
+      "k": 0.014858,
+      "epsilon": 0.06714
+    },
+    {
+      "iteration": 25,
+      "continuity": 0.059084,
+      "x_velocity": 0.0031614,
+      "y_velocity": 0.0031438,
+      "z_velocity": 0.0022712,
+      "k": 0.015082,
+      "epsilon": 0.033094
+    },
+    {
+      "iteration": 26,
+      "continuity": 0.058606,
+      "x_velocity": 0.0030848,
+      "y_velocity": 0.0031789,
+      "z_velocity": 0.0022404,
+      "k": 0.01538,
+      "epsilon": 0.029104
+    },
+    {
+      "iteration": 27,
+      "continuity": 0.057458,
+      "x_velocity": 0.0030088,
+      "y_velocity": 0.0030942,
+      "z_velocity": 0.0023079,
+      "k": 0.015696,
+      "epsilon": 0.043322
+    },
+    {
+      "iteration": 28,
+      "continuity": 0.058843,
+      "x_velocity": 0.0028764,
+      "y_velocity": 0.0028564,
+      "z_velocity": 0.0022829,
+      "k": 0.015949,
+      "epsilon": 0.036934
+    },
+    {
+      "iteration": 28,
+      "continuity": 0.058843,
+      "x_velocity": 0.0028764,
+      "y_velocity": 0.0028564,
+      "z_velocity": 0.0022829,
+      "k": 0.015949,
+      "epsilon": 0.036934
+    },
+    {
+      "iteration": 29,
+      "continuity": 0.058654,
+      "x_velocity": 0.0028823,
+      "y_velocity": 0.0028913,
+      "z_velocity": 0.0023663,
+      "k": 0.016196,
+      "epsilon": 0.03094
+    },
+    {
+      "iteration": 30,
+      "continuity": 0.059624,
+      "x_velocity": 0.002877,
+      "y_velocity": 0.0029269,
+      "z_velocity": 0.0023512,
+      "k": 0.01641,
+      "epsilon": 0.043698
+    },
+    {
+      "iteration": 31,
+      "continuity": 0.058516,
+      "x_velocity": 0.0028748,
+      "y_velocity": 0.0028744,
+      "z_velocity": 0.0024407,
+      "k": 0.016611,
+      "epsilon": 0.045544
+    },
+    {
+      "iteration": 32,
+      "continuity": 0.060937,
+      "x_velocity": 0.0028662,
+      "y_velocity": 0.0028218,
+      "z_velocity": 0.0024176,
+      "k": 0.016761,
+      "epsilon": 0.03152
+    },
+    {
+      "iteration": 33,
+      "continuity": 0.060167,
+      "x_velocity": 0.0029716,
+      "y_velocity": 0.002941,
+      "z_velocity": 0.0024993,
+      "k": 0.016922,
+      "epsilon": 0.030463
+    },
+    {
+      "iteration": 34,
+      "continuity": 0.061457,
+      "x_velocity": 0.0029761,
+      "y_velocity": 0.0029479,
+      "z_velocity": 0.002489,
+      "k": 0.017091,
+      "epsilon": 0.037659
+    },
+    {
+      "iteration": 35,
+      "continuity": 0.061279,
+      "x_velocity": 0.0030542,
+      "y_velocity": 0.0029489,
+      "z_velocity": 0.0025505,
+      "k": 0.01721,
+      "epsilon": 0.033785
+    },
+    {
+      "iteration": 35,
+      "continuity": 0.061279,
+      "x_velocity": 0.0030542,
+      "y_velocity": 0.0029489,
+      "z_velocity": 0.0025505,
+      "k": 0.01721,
+      "epsilon": 0.033785
+    },
+    {
+      "iteration": 36,
+      "continuity": 0.062416,
+      "x_velocity": 0.0030897,
+      "y_velocity": 0.0030268,
+      "z_velocity": 0.0025409,
+      "k": 0.01728,
+      "epsilon": 0.034404
+    },
+    {
+      "iteration": 37,
+      "continuity": 0.062419,
+      "x_velocity": 0.0031491,
+      "y_velocity": 0.0030412,
+      "z_velocity": 0.0026056,
+      "k": 0.017377,
+      "epsilon": 0.039308
+    },
+    {
+      "iteration": 38,
+      "continuity": 0.062764,
+      "x_velocity": 0.0031875,
+      "y_velocity": 0.0031278,
+      "z_velocity": 0.0026072,
+      "k": 0.017441,
+      "epsilon": 0.038549
+    },
+    {
+      "iteration": 39,
+      "continuity": 0.063286,
+      "x_velocity": 0.0032143,
+      "y_velocity": 0.0030914,
+      "z_velocity": 0.0026581,
+      "k": 0.017493,
+      "epsilon": 0.032731
+    },
+    {
+      "iteration": 40,
+      "continuity": 0.062782,
+      "x_velocity": 0.0032496,
+      "y_velocity": 0.003193,
+      "z_velocity": 0.0026742,
+      "k": 0.017507,
+      "epsilon": 0.031949
+    },
+    {
+      "iteration": 41,
+      "continuity": 0.063263,
+      "x_velocity": 0.0032925,
+      "y_velocity": 0.0032122,
+      "z_velocity": 0.0027075,
+      "k": 0.017467,
+      "epsilon": 0.030493
+    },
+    {
+      "iteration": 42,
+      "continuity": 0.064095,
+      "x_velocity": 0.0032909,
+      "y_velocity": 0.0032159,
+      "z_velocity": 0.0027608,
+      "k": 0.017512,
+      "epsilon": 0.030343
+    },
+    {
+      "iteration": 42,
+      "continuity": 0.064095,
+      "x_velocity": 0.0032909,
+      "y_velocity": 0.0032159,
+      "z_velocity": 0.0027608,
+      "k": 0.017512,
+      "epsilon": 0.030343
+    },
+    {
+      "iteration": 43,
+      "continuity": 0.065231,
+      "x_velocity": 0.0033567,
+      "y_velocity": 0.0033142,
+      "z_velocity": 0.0028,
+      "k": 0.017475,
+      "epsilon": 0.030156
+    },
+    {
+      "iteration": 44,
+      "continuity": 0.067372,
+      "x_velocity": 0.003364,
+      "y_velocity": 0.003315,
+      "z_velocity": 0.0028486,
+      "k": 0.01738,
+      "epsilon": 0.028285
+    },
+    {
+      "iteration": 45,
+      "continuity": 0.069512,
+      "x_velocity": 0.0033968,
+      "y_velocity": 0.0033355,
+      "z_velocity": 0.0029217,
+      "k": 0.017332,
+      "epsilon": 0.028081
+    },
+    {
+      "iteration": 46,
+      "continuity": 0.072292,
+      "x_velocity": 0.0034469,
+      "y_velocity": 0.0033861,
+      "z_velocity": 0.002985,
+      "k": 0.017217,
+      "epsilon": 0.026711
+    },
+    {
+      "iteration": 47,
+      "continuity": 0.075592,
+      "x_velocity": 0.0034956,
+      "y_velocity": 0.0034286,
+      "z_velocity": 0.0030442,
+      "k": 0.017281,
+      "epsilon": 0.028155
+    },
+    {
+      "iteration": 48,
+      "continuity": 0.078418,
+      "x_velocity": 0.003585,
+      "y_velocity": 0.0035029,
+      "z_velocity": 0.0030923,
+      "k": 0.017097,
+      "epsilon": 0.029947
+    },
+    {
+      "iteration": 49,
+      "continuity": 0.08272,
+      "x_velocity": 0.0035943,
+      "y_velocity": 0.0034582,
+      "z_velocity": 0.003132,
+      "k": 0.016891,
+      "epsilon": 0.029797
+    },
+    {
+      "iteration": 49,
+      "continuity": 0.08272,
+      "x_velocity": 0.0035943,
+      "y_velocity": 0.0034582,
+      "z_velocity": 0.003132,
+      "k": 0.016891,
+      "epsilon": 0.029797
+    },
+    {
+      "iteration": 50,
+      "continuity": 0.085297,
+      "x_velocity": 0.0036077,
+      "y_velocity": 0.0034845,
+      "z_velocity": 0.0031833,
+      "k": 0.016939,
+      "epsilon": 0.043992
+    },
+    {
+      "iteration": 51,
+      "continuity": 0.088991,
+      "x_velocity": 0.0036234,
+      "y_velocity": 0.0035103,
+      "z_velocity": 0.0032402,
+      "k": 0.017085,
+      "epsilon": 0.033077
+    },
+    {
+      "iteration": 52,
+      "continuity": 0.091936,
+      "x_velocity": 0.0036461,
+      "y_velocity": 0.0035342,
+      "z_velocity": 0.0032916,
+      "k": 0.017459,
+      "epsilon": 0.055788
+    },
+    {
+      "iteration": 53,
+      "continuity": 0.095577,
+      "x_velocity": 0.003595,
+      "y_velocity": 0.0034556,
+      "z_velocity": 0.0033483,
+      "k": 0.017441,
+      "epsilon": 0.034323
+    },
+    {
+      "iteration": 54,
+      "continuity": 0.099233,
+      "x_velocity": 0.0035326,
+      "y_velocity": 0.0034044,
+      "z_velocity": 0.0033746,
+      "k": 0.017484,
+      "epsilon": 0.031703
+    },
+    {
+      "iteration": 55,
+      "continuity": 0.10285,
+      "x_velocity": 0.0034688,
+      "y_velocity": 0.0033799,
+      "z_velocity": 0.0034367,
+      "k": 0.017428,
+      "epsilon": 0.023244
+    },
+    {
+      "iteration": 56,
+      "continuity": 0.1064,
+      "x_velocity": 0.0034507,
+      "y_velocity": 0.0033779,
+      "z_velocity": 0.0034664,
+      "k": 0.017346,
+      "epsilon": 0.028839
+    },
+    {
+      "iteration": 56,
+      "continuity": 0.1064,
+      "x_velocity": 0.0034507,
+      "y_velocity": 0.0033779,
+      "z_velocity": 0.0034664,
+      "k": 0.017346,
+      "epsilon": 0.028839
+    },
+    {
+      "iteration": 57,
+      "continuity": 0.11035,
+      "x_velocity": 0.0034078,
+      "y_velocity": 0.0033663,
+      "z_velocity": 0.0035217,
+      "k": 0.017288,
+      "epsilon": 0.025625
+    },
+    {
+      "iteration": 58,
+      "continuity": 0.11393,
+      "x_velocity": 0.0033825,
+      "y_velocity": 0.0033801,
+      "z_velocity": 0.0035785,
+      "k": 0.017095,
+      "epsilon": 0.0269
+    },
+    {
+      "iteration": 59,
+      "continuity": 0.11848,
+      "x_velocity": 0.0033455,
+      "y_velocity": 0.0033845,
+      "z_velocity": 0.0036623,
+      "k": 0.016712,
+      "epsilon": 0.023982
+    },
+    {
+      "iteration": 60,
+      "continuity": 0.12262,
+      "x_velocity": 0.0033574,
+      "y_velocity": 0.0033914,
+      "z_velocity": 0.0037405,
+      "k": 0.016261,
+      "epsilon": 0.025613
+    },
+    {
+      "iteration": 61,
+      "continuity": 0.12772,
+      "x_velocity": 0.0033669,
+      "y_velocity": 0.0034051,
+      "z_velocity": 0.0038137,
+      "k": 0.01604,
+      "epsilon": 0.028986
+    },
+    {
+      "iteration": 62,
+      "continuity": 0.13045,
+      "x_velocity": 0.0033642,
+      "y_velocity": 0.0033769,
+      "z_velocity": 0.0038867,
+      "k": 0.015834,
+      "epsilon": 0.029985
+    },
+    {
+      "iteration": 63,
+      "continuity": 0.13399,
+      "x_velocity": 0.0033629,
+      "y_velocity": 0.0033994,
+      "z_velocity": 0.0039518,
+      "k": 0.01547,
+      "epsilon": 0.031342
+    },
+    {
+      "iteration": 63,
+      "continuity": 0.13399,
+      "x_velocity": 0.0033629,
+      "y_velocity": 0.0033994,
+      "z_velocity": 0.0039518,
+      "k": 0.01547,
+      "epsilon": 0.031342
+    },
+    {
+      "iteration": 64,
+      "continuity": 0.13725,
+      "x_velocity": 0.0033648,
+      "y_velocity": 0.0033986,
+      "z_velocity": 0.004001,
+      "k": 0.015051,
+      "epsilon": 0.029151
+    },
+    {
+      "iteration": 65,
+      "continuity": 0.14022,
+      "x_velocity": 0.0033866,
+      "y_velocity": 0.003429,
+      "z_velocity": 0.0040479,
+      "k": 0.014337,
+      "epsilon": 0.022285
+    },
+    {
+      "iteration": 66,
+      "continuity": 0.14252,
+      "x_velocity": 0.0034283,
+      "y_velocity": 0.0034419,
+      "z_velocity": 0.0040793,
+      "k": 0.013896,
+      "epsilon": 0.028994
+    },
+    {
+      "iteration": 67,
+      "continuity": 0.14511,
+      "x_velocity": 0.0034363,
+      "y_velocity": 0.0034425,
+      "z_velocity": 0.0040975,
+      "k": 0.013586,
+      "epsilon": 0.027587
+    },
+    {
+      "iteration": 68,
+      "continuity": 0.1462,
+      "x_velocity": 0.0034737,
+      "y_velocity": 0.0034532,
+      "z_velocity": 0.0041067,
+      "k": 0.013225,
+      "epsilon": 0.035725
+    },
+    {
+      "iteration": 69,
+      "continuity": 0.14904,
+      "x_velocity": 0.0034827,
+      "y_velocity": 0.0034807,
+      "z_velocity": 0.0041128,
+      "k": 0.012758,
+      "epsilon": 0.033517
+    },
+    {
+      "iteration": 70,
+      "continuity": 0.15216,
+      "x_velocity": 0.0034821,
+      "y_velocity": 0.0034872,
+      "z_velocity": 0.0041113,
+      "k": 0.012504,
+      "epsilon": 0.033837
+    },
+    {
+      "iteration": 70,
+      "continuity": 0.15216,
+      "x_velocity": 0.0034821,
+      "y_velocity": 0.0034872,
+      "z_velocity": 0.0041113,
+      "k": 0.012504,
+      "epsilon": 0.033837
+    },
+    {
+      "iteration": 71,
+      "continuity": 0.15713,
+      "x_velocity": 0.0034867,
+      "y_velocity": 0.0035278,
+      "z_velocity": 0.0041086,
+      "k": 0.012109,
+      "epsilon": 0.031757
+    },
+    {
+      "iteration": 72,
+      "continuity": 0.15873,
+      "x_velocity": 0.0034629,
+      "y_velocity": 0.003512,
+      "z_velocity": 0.0040734,
+      "k": 0.011669,
+      "epsilon": 0.034449
+    },
+    {
+      "iteration": 73,
+      "continuity": 0.16154,
+      "x_velocity": 0.0034544,
+      "y_velocity": 0.0035188,
+      "z_velocity": 0.0040124,
+      "k": 0.011302,
+      "epsilon": 0.030866
+    },
+    {
+      "iteration": 74,
+      "continuity": 0.1624,
+      "x_velocity": 0.003421,
+      "y_velocity": 0.0034499,
+      "z_velocity": 0.0039304,
+      "k": 0.01063,
+      "epsilon": 0.021892
+    },
+    {
+      "iteration": 75,
+      "continuity": 0.1646,
+      "x_velocity": 0.0034028,
+      "y_velocity": 0.0034061,
+      "z_velocity": 0.0038424,
+      "k": 0.01062,
+      "epsilon": 0.032148
+    }
+  ],
+  "web_bundle_path": "C:\\Users\\iPC\\Downloads\\Code\\BioMix - STR\\biomix_str\\outputs\\fluent_runs\\fluent_retr_elli_200rpm_409fa03695fc\\web_3d_bundle.json"
+}

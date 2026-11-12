@@ -1,0 +1,30 @@
+# Python & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Ansys Fluent Logs & Stray Files
+fluent-*.trn
+fluent-*.log
+*.log
+outputs/fluent_logs/
+
+# Fluent Heavy Solution & Point Cloud Binaries (MED-04)
+outputs/fluent_runs/**/*.cas*
+outputs/fluent_runs/**/*.dat*
+outputs/fluent_runs/**/*.bdf
+outputs/fluent_runs/**/*.vtp
+
+# Scratch & Temporary Meshes/Tests
+scratch/
+/test_*
+/test.*
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

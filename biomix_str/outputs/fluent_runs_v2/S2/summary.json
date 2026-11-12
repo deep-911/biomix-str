@@ -1,0 +1,20 @@
+{
+  "case_id": "S2",
+  "case_name": "MRF Radius 0.80 Di",
+  "n_cells": 45800,
+  "n_cells_mrf": 18496,
+  "n_cells_stationary": 27304,
+  "iterations_run": 2000,
+  "converged": false,
+  "stop_reason": "Hard cap reached (2000 iterations)",
+  "final_continuity": 0.0012126,
+  "torque_drift_pct": 0.11,
+  "power_w": 13.96,
+  "torque_nm": 0.5334,
+  "vessel_torque_nm": 0.5029,
+  "angular_momentum_imbalance_pct": 5.71,
+  "np": 3.589,
+  "yplus_avg": 96.9,
+  "yplus_max": 407.7,
+  "wall_time_s": 454.0
+}

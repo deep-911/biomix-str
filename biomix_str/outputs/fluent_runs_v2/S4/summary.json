@@ -1,0 +1,20 @@
+{
+  "case_id": "S4",
+  "case_name": "SST k-omega Viscous Model",
+  "n_cells": 35852,
+  "n_cells_mrf": 12755,
+  "n_cells_stationary": 23097,
+  "iterations_run": 2000,
+  "converged": false,
+  "stop_reason": "Hard cap reached (2000 iterations)",
+  "final_continuity": 0.014394,
+  "torque_drift_pct": 0.86,
+  "power_w": 13.42,
+  "torque_nm": 0.5125,
+  "vessel_torque_nm": 0.4753,
+  "angular_momentum_imbalance_pct": 7.27,
+  "np": 3.449,
+  "yplus_avg": 80.4,
+  "yplus_max": 311.1,
+  "wall_time_s": 444.3
+}

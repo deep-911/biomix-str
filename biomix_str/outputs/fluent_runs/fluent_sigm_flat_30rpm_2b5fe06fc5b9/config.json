@@ -1,0 +1,51 @@
+{
+  "tank": {
+    "diameter_m": 0.4,
+    "liquid_height_m": 0.45,
+    "bottom_type": "flat",
+    "baffle_count": 0,
+    "baffle_width_ratio": 0.1,
+    "sparger_type": "ring",
+    "include_probes": false,
+    "include_cooling_jacket": false,
+    "impellers": [
+      {
+        "impeller_type": "sigma_z_kneader",
+        "diameter_m": 0.35,
+        "clearance_m": 0.016,
+        "blade_width_m": 0.14,
+        "blade_count": 2,
+        "flow_direction": "close_clearance_tangential",
+        "swept_volume_m3": 0.013469578502266237
+      }
+    ],
+    "baffle_width_m": 0.0,
+    "is_baffled": false,
+    "aspect_ratio": 1.125,
+    "total_height_m": 0.5625,
+    "dish_depth_m": 0.0,
+    "working_volume_m3": 0.056548667764616284,
+    "cross_sectional_area_m2": 0.12566370614359174
+  },
+  "fluid": {
+    "name": "50,000 cP Dense Biopolymer Dough",
+    "density_kg_m3": 1120.0,
+    "viscosity_pa_s": 50.0,
+    "coalescing_media": true,
+    "rheology_model": "power_law",
+    "consistency_k_pa_s_n": 50.0,
+    "flow_behavior_index_n": 0.5,
+    "kinematic_viscosity_m2_s": 0.044642857142857144
+  },
+  "ops": {
+    "rpm": 30.0,
+    "aeration_vvm": 0.5,
+    "cell_type": "microbial",
+    "rheology_model": "power_law",
+    "consistency_k_pa_s_n": 50.0,
+    "flow_behavior_index_n": 0.5,
+    "rps": 0.5
+  },
+  "mesh_density": "fast",
+  "iterations": 15
+}

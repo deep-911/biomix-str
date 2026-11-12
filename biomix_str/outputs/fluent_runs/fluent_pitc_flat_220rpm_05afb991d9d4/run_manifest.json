@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "run_id": "fluent_pitc_flat_220rpm_05afb991d9d4",
+  "solver": "Ansys Fluent 2026 R1 via PyFluent",
+  "physics_scope": "single_phase_steady_mrf",
+  "readiness_tier": "live_cfd_mvp",
+  "verified": true,
+  "classification": "verified_fluent_result",
+  "label": "Verified Fluent Result (Ansys Fluent 2026 R1)",
+  "warnings": [],
+  "config_sha256": "64ec9f6102f9968d7a12efd3011a4936c619f09d67d18f87a642423970d04e89",
+  "mesh_density": "fast",
+  "iterations_requested": 15,
+  "iterations_computed": 80,
+  "converged": true,
+  "native_case_data_written": true,
+  "rheology": {
+    "model": "newtonian",
+    "consistency_k": null,
+    "flow_index_n": null,
+    "effective_viscosity_pa_s": 0.001
+  },
+  "re_i": 93866.7,
+  "cfd_metrics": {
+    "torque_n_m": 0.1821,
+    "power_w": 4.19,
+    "power_number_np": 0.811,
+    "mean_velocity_m_s": 0.2782,
+    "max_velocity_m_s": 1.8215,
+    "dead_zone_fraction": 0.1505,
+    "provenance": "fluent_solver"
+  },
+  "engineering_reference_metrics": {
+    "torque_n_m": 0.3366,
+    "power_w": 7.75,
+    "power_number_np": 1.5,
+    "provenance": "engineering_reference"
+  },
+  "metric_sources": {
+    "cfd_max_velocity_m_s": "fluent_field",
+    "cfd_mean_velocity_m_s": "fluent_field",
+    "cfd_min_pressure_pa": "fluent_field",
+    "cfd_max_pressure_pa": "fluent_field",
+    "cfd_mean_tke_m2_s2": "fluent_field",
+    "cfd_mean_epsilon_m2_s3": "fluent_field",
+    "cfd_power_w": "fluent_solver",
+    "cfd_torque_n_m": "fluent_solver"
+  },
+  "convergence": {
+    "converged": true,
+    "torque_drift_pct": 1.6283,
+    "velocity_drift_pct": 100.0,
+    "continuity_converged": true,
+    "window_size": 3
+  },
+  "convergence_monitoring": {
+    "monitored_torque_history": [
+      0.0583,
+      0.1724,
+      0.2727,
+      0.3465,
+      0.395,
+      0.4222,
+      0.4327,
+      0.4305,
+      0.4197,
+      0.4032
+    ],
+    "torque_drift_pct": 1.6283,
+    "final_continuity_residual": 0.0052206,
+    "converged": true
+  },
+  "artifacts": {
+    "mesh": "fluent_fluent_p_mrf.bdf",
+    "field_export": "fluent_internal_field.vtp",
+    "case_file": "fluent_case.cas.h5",
+    "data_file": "fluent_case.dat.h5",
+    "metadata": "metadata.json",
+    "web_bundle": "web_3d_bundle.json",
+    "configuration": "config.json",
+    "manifest": "run_manifest.json"
+  }
+}

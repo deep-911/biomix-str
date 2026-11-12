@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biomix-str"
+version = "0.1.0"
+description = "BioMix-STR: Bioprocess Engineering stirred-tank bioreactor simulation suite"
+readme = {text = "BioMix-STR: Bioprocess Engineering stirred-tank bioreactor simulation suite", content-type = "text/plain"}
+requires-python = ">=3.10"
+dependencies = [
+    "ansys-fluent-core",
+    "fastapi",
+    "gmsh",
+    "numpy",
+    "pyvista",
+    "scipy",
+    "pydantic",
+    "matplotlib",
+    "pytest",
+    "uvicorn",
+]
+
+[project.scripts]
+biomix-studio = "biomix.server:main"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["biomix_str/tests", "tests"]
+markers = [
+    "data_pending: open defects in cached Fluent runs pending re-run",
+]

@@ -1,0 +1,10 @@
+ansys-fluent-core
+fastapi
+gmsh
+numpy
+pyvista
+scipy
+pydantic
+matplotlib
+pytest
+uvicorn

@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioMix-STR · Ansys Fluent 2026 R1 CFD Studio</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Roboto, Roboto Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="/static/styles.css">
+
+  <!-- Three.js + OrbitControls (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <div id="app-container">
+
+    <!-- ====================================================================
+         1. Top Floating Google Pill Navbar
+         ==================================================================== -->
+    <header id="top-navbar" class="top-app-bar">
+      <!-- Zone 1: Left - Squircle Impeller Logo + Single-Line Title + Compact Status Chip -->
+      <div class="header-left brand-section">
+        <div class="brand-logo-badge" title="BioMix-STR Bioreactor CFD Engine">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+            <path d="M12 9C12 5 15 3.5 17 4C18 5 17 8 14.5 10"/>
+            <path d="M9.4 13.5C6 15.5 3.8 14.2 3.5 12.5C3.5 11 6 9.8 9.5 11.5"/>
+            <path d="M14.6 13.5C16 17.5 18.2 18.8 20 18C21 17 19.5 14.2 16 12.5"/>
+          </svg>
+        </div>
+        <span class="brand-title">BioMix-STR</span>
+        <div class="status-badge" id="fluent-status-pill" title="Ansys Fluent 2026 R1 (v261) Connected · 31 Stored Fluent Runs (8 passes basic checks)">
+          <span class="status-dot-pulse"></span>
+          <span id="cached-count-text">31 stored Fluent runs (8 passes basic checks)</span>
+        </div>
+      </div>
+
+      <!-- Zone 2: Center - Page-Shifting Segmented Pill Navbar -->
+      <nav class="workspace-tabs nav-tabs-pill nav-pills" role="tablist">
+        <button class="tab-btn nav-pill-btn active" id="tab-btn-3d" data-view="view-3d">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          <span>3D Studio</span>
+        </button>
+        <button class="tab-btn nav-pill-btn" id="tab-btn-2d" data-view="view-2d">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+          <span>2D Inspector</span>
+        </button>
+        <button class="tab-btn nav-pill-btn" id="tab-btn-compare" data-view="view-compare">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="9" height="18" rx="1"/><rect x="13" y="3" width="9" height="18" rx="1"/></svg>
+          <span>Compare</span>
+        </button>
+        <button class="tab-btn nav-pill-btn" id="tab-btn-residuals" data-view="view-evidence">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Evidence</span>
+        </button>
+        <button class="tab-btn nav-pill-btn" id="tab-btn-theory" data-view="view-theory">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.1 1.9c-.8.65-1.6 1.1-1.6 2.6"/><path d="M12 17h.01"/></svg>
+          <span>Theory &amp; Scale-Up</span>
+        </button>
+      </nav>
+
+      <!-- Zone 3: Right - Clean Action Cluster -->
+      <div class="header-right nav-actions">
+        <a href="https://github.com/deep-911/biomix-str" target="_blank" rel="noopener noreferrer" class="header-action-btn" id="btn-github-link" title="View Source & Local Fluent Setup on GitHub" style="text-decoration:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <span>GitHub</span>
+        </a>
+        <button class="header-action-btn" id="btn-open-library" title="Open Impeller Engineering Library">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Impellers</span>
+        </button>
+        <button class="header-action-btn primary" id="btn-export-report" title="Export Reproducible Verification Report (Markdown / HTML)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Export Report</span>
+        </button>
+        <button class="theme-toggle-btn circular" id="btn-theme-toggle" title="Toggle Dark Inspection Mode">
+          <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         2. Main Workspace Layout
+         ==================================================================== -->
+    <div id="main-workspace">
+
+      <!-- Left Rail: Modular Bioreactor Assembler & Controls -->
+      <aside id="workbench-rail">
+        <div class="rail-scroll-area rail-scroll-content" id="rail-scroll-content">
+
+        <!-- Card 1: Cached Bioreactor Ensemble Catalog -->
+        <div class="wb-card" id="card-ensemble-presets">
+          <div class="wb-card-header">
+            <div class="wb-card-title-group">
+              <svg class="wb-card-header-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span class="wb-card-title">Ensemble Presets</span>
+            </div>
+            <span class="wb-card-badge" id="presets-total-badge">30 Presets</span>
+          </div>
+
+          <!-- Quick Search Filter Box (Google M3 Search Bar) -->
+          <div class="preset-search-box">
+            <svg class="preset-search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="preset-search-input" class="preset-search-input" placeholder="Search presets (e.g. Rushton, Smith, 250 RPM)..." autocomplete="off" spellcheck="false" aria-label="Search ensemble presets">
+            <button type="button" id="preset-search-clear" class="preset-search-clear" title="Clear search" aria-label="Clear search" style="display: none;">&times;</button>
+          </div>
+
+          <!-- Preset Category Filter Pills -->
+          <div class="preset-category-pills" id="preset-category-pills" role="tablist" aria-label="Preset categories">
+            <button class="preset-pill active" data-category="all" role="tab" aria-selected="true">All <span class="pill-count" id="pill-count-all">30</span></button>
+            <button class="preset-pill" data-category="radial" role="tab" aria-selected="false">Radial <span class="pill-count" id="pill-count-radial">9</span></button>
+            <button class="preset-pill" data-category="axial" role="tab" aria-selected="false">Axial <span class="pill-count" id="pill-count-axial">5</span></button>
+            <button class="preset-pill" data-category="viscous" role="tab" aria-selected="false">Viscous <span class="pill-count" id="pill-count-viscous">7</span></button>
+            <button class="preset-pill" data-category="sweeps" role="tab" aria-selected="false">Sweeps <span class="pill-count" id="pill-count-sweeps">9</span></button>
+          </div>
+
+          <!-- Presets Scroll Area -->
+          <div class="preset-chips-scroll" id="presets-list" role="listbox" aria-label="Bioreactor Presets List">
+            <!-- Dynamically populated via /api/presets -->
+          </div>
+        </div>
+
+        <!-- Card 2: Vessel Geometry & Bottom Head -->
+        <div class="wb-card collapsible collapsed" id="card-vessel-geometry">
+          <div class="wb-card-header card-collapse-header" data-target="body-vessel-geometry">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="card-chevron">&#9656;</span>
+              <span class="wb-card-title">Vessel &amp; Baffles</span>
+            </div>
+            <span class="wb-card-badge" id="vessel-aspect-badge">H<sub>L</sub>/D<sub>T</sub> = 1.11</span>
+          </div>
+
+          <div class="wb-card-body" id="body-vessel-geometry">
+            <div class="control-group">
+              <span class="control-label">Vessel Bottom Dish</span>
+              <div class="segmented-picker" id="bottom-picker">
+                <button class="segmented-option active" data-bottom="flat">Flat</button>
+                <button class="segmented-option" data-bottom="elliptical_2_1">ASME 2:1</button>
+                <button class="segmented-option" data-bottom="hemispherical">Hemi</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <span class="control-label">Baffles Configuration</span>
+              <div class="segmented-picker" id="baffles-picker">
+                <button class="segmented-option active" data-baffles="4">4 Baffles (W<sub>b</sub> = D<sub>T</sub>/10)</button>
+                <button class="segmented-option" data-baffles="0">Unbaffled (0)</button>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="control-label-row">
+                <span class="control-label">Tank Diameter (D<sub>T</sub>)</span>
+                <span class="control-val" id="val-tank-t">0.45 m</span>
+              </div>
+              <input type="range" class="slider-input" id="slider-tank-t" min="0.30" max="0.75" step="0.01" value="0.45">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label-row">
+                <span class="control-label">Liquid Height (H<sub>L</sub>)</span>
+                <span class="control-val" id="val-tank-h">0.50 m</span>
+              </div>
+              <input type="range" class="slider-input" id="slider-tank-h" min="0.30" max="0.80" step="0.01" value="0.50">
+            </div>
+
+            <div style="margin-top: 10px;">
+              <button class="btn-subtle" id="btn-apply-bpe-std" style="width: 100%; justify-content: center; font-size: 11.5px; padding: 6px 10px;" title="Reset geometry to standard stirred-tank proportions">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
+                Apply Standard Geometry (D<sub>T</sub>/D<sub>i</sub> = 3)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Operating Conditions -->
+        <div class="wb-card collapsible collapsed" id="card-operating-conditions">
+          <div class="wb-card-header card-collapse-header" data-target="body-operating-conditions">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="card-chevron">&#9656;</span>
+              <span class="wb-card-title">Operating Conditions</span>
+            </div>
+            <span class="wb-card-badge">Water Broth</span>
+          </div>
+
+          <div class="wb-card-body" id="body-operating-conditions">
+            <div class="control-group">
+              <div class="control-label-row">
+                <span class="control-label">Agitation Speed (N)</span>
+                <span class="control-val" id="val-rpm">280 RPM</span>
+              </div>
+              <input type="range" class="slider-input" id="slider-rpm" min="60" max="500" step="10" value="280">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label-row">
+                <span class="control-label">Broth Viscosity (&mu;)</span>
+                <span class="control-val" id="val-viscosity">1.0 cP (0.0010 Pa&middot;s)</span>
+              </div>
+              <div class="visc-presets-row" id="visc-presets-row">
+                <button class="visc-chip active" data-visc="1">1 cP Water</button>
+                <button class="visc-chip" data-visc="150">150 cP Broth</button>
+                <button class="visc-chip" data-visc="3000">3,000 cP Mycelial</button>
+                <button class="visc-chip" data-visc="25000">25,000 cP Polymer</button>
+                <button class="visc-chip" data-visc="250000">250,000 cP Paste</button>
+              </div>
+              <input type="range" class="slider-input" id="slider-viscosity-log" min="0" max="6" step="0.02" value="0" style="margin-top: 6px;">
+              <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-tertiary); font-family: var(--font-mono); margin-top: 2px;">
+                <span>1 cP</span>
+                <span>100 cP</span>
+                <span>10,000 cP</span>
+                <span>1,000,000 cP</span>
+              </div>
+            </div>
+
+            <!-- Rheology Model Selector -->
+            <div class="control-group" style="margin-top: 10px;">
+              <div class="control-label-row">
+                <span class="control-label">Rheology Model</span>
+                <span class="control-val" id="val-rheology-model">Newtonian</span>
+              </div>
+              <select class="select-input" id="select-rheology-model">
+                <option value="newtonian" selected>Newtonian Liquid (Constant &mu;)</option>
+                <option value="power_law">Power-Law Non-Newtonian (K, n)</option>
+              </select>
+            </div>
+
+            <!-- Revealed when Power-Law is selected -->
+            <div id="powerlaw-controls-box" style="display: none; padding: 10px; background: rgba(26,115,232,0.04); border-radius: 8px; margin-top: 8px; border: 1px solid rgba(26,115,232,0.18);">
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span class="control-label">Consistency Index (K)</span>
+                  <span class="control-val" id="val-consistency-k">5.00 Pa&middot;s&#8319;</span>
+                </div>
+                <input type="range" class="slider-input" id="slider-consistency-k" min="0.1" max="25.0" step="0.1" value="5.0">
+              </div>
+
+              <div class="control-group" style="margin-top: 6px;">
+                <div class="control-label-row">
+                  <span class="control-label">Flow Behavior Index (n)</span>
+                  <span class="control-val" id="val-flow-index-n">0.85 (Pseudoplastic)</span>
+                </div>
+                <input type="range" class="slider-input" id="slider-flow-index-n" min="0.20" max="1.20" step="0.05" value="0.85">
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 6px; padding: 6px 8px; background: rgba(0,0,0,0.03); border-radius: 4px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Metzner-Otto &gamma;&#775;<sub>avg</sub>:</span>
+                  <span class="mono" id="val-metzner-shear">20.0 s⁻¹</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 2px;">
+                  <span>Apparent Viscosity &mu;<sub>app</sub>:</span>
+                  <span class="mono" id="val-metzner-mu-app" style="color: var(--google-blue); font-weight: 600;">5,000 cP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3b: Vessel Internals & Fittings (Default Collapsed for Compact Rail) -->
+        <div class="wb-card collapsible collapsed" id="card-vessel-internals">
+          <div class="wb-card-header card-collapse-header" data-target="body-vessel-internals">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="card-chevron">&#9656;</span>
+              <span class="wb-card-title">Vessel Hardware (Visual)</span>
+            </div>
+            <span class="chip-tag-cached" style="background-color: var(--google-yellow-container); color: var(--google-yellow-on-container); font-size: 9px;" title="Internal hardware geometry is rendered for visual inspection and equipment layout. CFD solves single-phase unsparged fluid.">Visual Only</span>
+          </div>
+
+          <div class="wb-card-body" id="body-vessel-internals">
+            <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 8px;">
+              Internal geometry preview (probes, sparger, jacket).
+            </div>
+
+            <!-- Sparger Selector -->
+            <div class="control-group">
+              <div class="control-label-row">
+                <span class="control-label">Sparger Geometry</span>
+                <span class="control-val" id="val-sparger-type">Ring Sparger</span>
+              </div>
+              <select class="select-input" id="select-sparger-type">
+                <option value="ring" selected>Torus Ring Sparger (Standard)</option>
+                <option value="pipe">Open Horizontal Pipe Sparger</option>
+                <option value="none">Unsparged (None)</option>
+              </select>
+            </div>
+
+            <!-- DO / pH Dip-Tube Probes Toggle -->
+            <div class="control-group-row" style="margin-top: 8px;">
+              <div>
+                <span class="control-label" style="display: block;">DO / pH Dip-Tube Probes</span>
+                <span style="font-size: 10px; color: var(--text-tertiary);">Dual sensor tubes from top head</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-probes">
+                <span class="slider round"></span>
+              </label>
+            </div>
+
+            <!-- External Thermal Jacket Toggle -->
+            <div class="control-group-row" style="margin-top: 8px;">
+              <div>
+                <span class="control-label" style="display: block;">External Thermal Jacket</span>
+                <span style="font-size: 10px; color: var(--text-tertiary);">Translucent heating/cooling shell</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-cooling-jacket">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Multi-Impeller Stages & Inter-Impeller Gap (ΔC) -->
+        <div class="wb-card collapsible" id="card-multi-impellers">
+          <div class="wb-card-header card-collapse-header" data-target="body-multi-impellers">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="card-chevron">&#9662;</span>
+              <span class="wb-card-title">Impeller Stages</span>
+            </div>
+            <span class="wb-card-badge" id="num-stages-badge">2 Stages</span>
+          </div>
+
+          <div class="wb-card-body" id="body-multi-impellers">
+            <!-- Stage 1 (Bottom) -->
+            <div class="stage-box">
+              <div class="stage-header">
+                <span class="stage-title">Stage 1 (Bottom Impeller)</span>
+              </div>
+              <div class="control-group">
+                <select class="select-input" id="select-imp1-type">
+                  <optgroup label="Open Radial-Flow Turbines (6)">
+                    <option value="rushton_6_blade" selected>Rushton 6-Blade Disc (R-100)</option>
+                    <option value="smith_cd6">Smith Concave Semi-Circular (CD-6)</option>
+                    <option value="flat_blade_fbt">Open Flat-Blade Turbine (FBT)</option>
+                    <option value="paddle_r200">Two-Blade Paddle (R-200)</option>
+                    <option value="curved_backswept">Curved / Backswept Turbine</option>
+                    <option value="retreat_blade">Retreat-Blade Impeller (Pfaudler)</option>
+                  </optgroup>
+                  <optgroup label="Open Axial &amp; Mixed-Flow (5)">
+                    <option value="marine_propeller">Marine Propeller (JP-3)</option>
+                    <option value="pitched_blade_45">45&deg; Pitched-Blade Turbine (PBT)</option>
+                    <option value="hydrofoil_he3">High-Efficiency Hydrofoil (HE-3)</option>
+                    <option value="maxflo_high_solidity">High-Solidity Hydrofoil (Maxflo)</option>
+                    <option value="intermig_ekato">EKATO Intermig Multistage</option>
+                  </optgroup>
+                  <optgroup label="Close-Clearance High-Viscosity (5)">
+                    <option value="anchor">Anchor Impeller</option>
+                    <option value="helical_ribbon">Helical Ribbon Impeller</option>
+                    <option value="auger_screw">Auger Helical Screw</option>
+                    <option value="gate_impeller">Gate Anchor</option>
+                    <option value="sigma_z_kneader">Sigma / Z-Blade Kneader</option>
+                  </optgroup>
+                </select>
+                <div id="impeller-verified-note" class="control-note" style="display: none; font-size: 11px; color: #10b981; margin-top: 4px; font-weight: 500;"></div>
+              </div>
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span class="control-label">Impeller Diameter (D₁)</span>
+                  <span class="control-val" id="val-imp1-d">0.15 m</span>
+                </div>
+                <input type="range" class="slider-input" id="slider-imp1-d" min="0.10" max="0.45" step="0.01" value="0.15">
+              </div>
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span class="control-label" id="lbl-imp1-c">Off-Bottom Clearance (C₁)</span>
+                  <span class="control-val" id="val-imp1-c">0.14 m</span>
+                </div>
+                <input type="range" class="slider-input" id="slider-imp1-c" min="0.01" max="0.28" step="0.005" value="0.14">
+              </div>
+            </div>
+
+            <!-- Stage 2 Toggle & Box -->
+            <div class="control-group" style="margin-top: 4px;">
+              <label class="studio-toggle">
+                <input type="checkbox" id="check-stage2-active" checked>
+                <span>Enable Stage 2 (Upper Impeller)</span>
+              </label>
+            </div>
+
+            <div class="stage-box" id="stage2-controls">
+              <div class="stage-header">
+                <span class="stage-title">Stage 2 (Upper Impeller)</span>
+              </div>
+              <div class="control-group">
+                <select class="select-input" id="select-imp2-type">
+                  <optgroup label="Open Axial &amp; Mixed-Flow (5)">
+                    <option value="pitched_blade_45" selected>45&deg; Pitched-Blade Turbine (PBT)</option>
+                    <option value="marine_propeller">Marine Propeller (JP-3)</option>
+                    <option value="hydrofoil_he3">High-Efficiency Hydrofoil (HE-3)</option>
+                    <option value="maxflo_high_solidity">High-Solidity Hydrofoil (Maxflo)</option>
+                    <option value="intermig_ekato">EKATO Intermig Multistage</option>
+                  </optgroup>
+                  <optgroup label="Open Radial-Flow Turbines (6)">
+                    <option value="rushton_6_blade">Rushton 6-Blade Disc (R-100)</option>
+                    <option value="smith_cd6">Smith Concave Semi-Circular (CD-6)</option>
+                    <option value="flat_blade_fbt">Open Flat-Blade Turbine (FBT)</option>
+                    <option value="paddle_r200">Two-Blade Paddle (R-200)</option>
+                    <option value="curved_backswept">Curved / Backswept Turbine</option>
+                    <option value="retreat_blade">Retreat-Blade Impeller (Pfaudler)</option>
+                  </optgroup>
+                  <optgroup label="Close-Clearance High-Viscosity (5)">
+                    <option value="anchor">Anchor Impeller</option>
+                    <option value="helical_ribbon">Helical Ribbon Impeller</option>
+                    <option value="auger_screw">Auger Helical Screw</option>
+                    <option value="gate_impeller">Gate Anchor</option>
+                    <option value="sigma_z_kneader">Sigma / Z-Blade Kneader</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span class="control-label">Impeller Diameter (D₂)</span>
+                  <span class="control-val" id="val-imp2-d">0.15 m</span>
+                </div>
+                <input type="range" class="slider-input" id="slider-imp2-d" min="0.10" max="0.45" step="0.01" value="0.15">
+              </div>
+              <div class="control-group">
+                <div class="control-label-row">
+                  <span class="control-label" id="lbl-imp2-c">Upper Clearance (C₂)</span>
+                  <span class="control-val" id="val-imp2-c">0.38 m</span>
+                </div>
+                <input type="range" class="slider-input" id="slider-imp2-c" min="0.18" max="0.46" step="0.01" value="0.38">
+              </div>
+            </div>
+
+            <!-- Live Gap Schematic & Metric Callout -->
+            <div class="gap-schematic-container gap-visual-container" id="gap-visual-box">
+              <svg class="mini-reactor-svg" id="mini-reactor-svg" viewBox="0 0 100 130">
+                <rect x="15" y="15" width="70" height="95" rx="2" fill="#E8F0FE" stroke="#4285F4" stroke-width="1.5"/>
+                <path id="svg-bottom-path" d="M15,110 L85,110" stroke="#4285F4" stroke-width="2" fill="none"/>
+                <line x1="15" y1="25" x2="85" y2="25" stroke="#1A73E8" stroke-dasharray="3,2" stroke-width="1.2"/>
+                <line x1="50" y1="10" x2="50" y2="105" stroke="#5F6368" stroke-width="3"/>
+                <rect id="svg-imp1" x="35" y="90" width="30" height="6" rx="2" fill="#1A73E8"/>
+                <rect id="svg-imp2" x="35" y="45" width="30" height="6" rx="2" fill="#EA4335"/>
+                <line id="svg-gap-line" x1="88" y1="48" x2="88" y2="93" stroke="#F9AB00" stroke-width="1.5"/>
+                <text id="svg-gap-label" x="90" y="73" font-size="8" fill="#B06000" font-family="Roboto Mono">&Delta;Hᵢ</text>
+              </svg>
+
+              <div class="gap-readout-col">
+                <span class="control-label">Inter-Impeller Gap (&Delta;C)</span>
+                <div class="gap-main-metric" id="gap-main-metric">&Delta;C = 0.24 m</div>
+                <div class="gap-ratio-metric" id="gap-ratio-metric">Spacing Ratio &Delta;C/D₁ = 1.60</div>
+                <div class="gap-status-pill good" id="gap-status-pill">Independent Dual Loops</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /rail-scroll-content -->
+
+      <!-- Docked Solver Execution Panel (Firm bottom anchor, no overlay) -->
+      <div class="wb-card docked-solver-card collapsible" id="card-fluent-solver">
+        <div class="wb-card-header card-collapse-header" data-target="body-fluent-solver">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="card-chevron">&#9662;</span>
+            <span class="wb-card-title">Ansys Fluent Solver</span>
+          </div>
+          <span class="wb-card-badge" id="cache-indicator-badge">Checking...</span>
+        </div>
+
+        <div class="wb-card-body" id="body-fluent-solver">
+          <div class="control-group">
+            <span class="control-label">Mesh Density &amp; Conformal MRF</span>
+            <div class="segmented-picker" id="mesh-picker">
+              <button class="segmented-option active" data-mesh="fast" data-density="fast">Fast (Coarse)</button>
+              <button class="segmented-option" data-mesh="medium" data-density="medium">Standard (Med)</button>
+              <button class="segmented-option" data-mesh="fine" data-density="fine">Fine (64k)</button>
+            </div>
+          </div>
+
+          <!-- Live Pre-Flight Estimate Box -->
+          <div class="preflight-estimate-container" id="preflight-estimate-container">
+            <div class="preflight-row">
+              <span class="preflight-pill cell-pill" id="preflight-cell-pill">~14k cells</span>
+              <span class="preflight-pill time-pill" id="preflight-time-pill">~35s solve</span>
+              <span class="preflight-pill license-pill ok" id="preflight-license-pill">&lt; 512k Student Limit: OK</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <span class="control-label">Navier-Stokes Iterations</span>
+              <span class="control-val" id="val-iterations">80 iters</span>
+            </div>
+            <input type="range" class="slider-input" id="slider-iterations" min="5" max="500" step="5" value="80">
+          </div>
+
+          <div class="cta-container">
+            <!-- Dynamic CTA: Load Instant vs Solve in Fluent -->
+            <button class="btn-instant-load" id="btn-load-cached">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+              Load Result Artifact (Instant)
+            </button>
+            <button class="btn-primary-solve" id="btn-solve-fluent">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Solve in Ansys Fluent 2026 R1
+            </button>
+          </div>
+        </div>
+      </div>
+
+      </aside>
+
+      <!-- Center / Right Main View Area -->
+      <main id="main-view-area">
+
+        <!-- ================================================================
+             VIEW PANE 1: 3D Fluent Flow & Particle Studio
+             ================================================================ -->
+        <section class="view-pane active" id="view-3d">
+          <div id="webgl-canvas-container"></div>
+
+          <!-- Camera Presets HUD -->
+          <div class="camera-controls-hud">
+            <button class="hud-pill-btn active" data-cam="iso">Isometric</button>
+            <button class="hud-pill-btn" data-cam="front">Front (XZ)</button>
+            <button class="hud-pill-btn" data-cam="side">Side (YZ)</button>
+            <button class="hud-pill-btn" data-cam="top">Top (XY)</button>
+          </div>
+
+          <!-- Live CFD Metrics HUD Card -->
+          <div class="hud-metrics-card">
+            <div class="hud-header">
+              <span class="hud-title" id="hud-card-title">Engineering Reference</span>
+              <span class="wb-card-badge" id="hud-regime-badge">Turbulent</span>
+            </div>
+            <!-- Revert to Verified CFD Banner (Visible when user modifies sliders from a verified run) -->
+            <div id="hud-revert-banner" class="hud-banner hud-banner-revert" style="display: none;">
+              <span class="hud-banner-msg">Modified from verified run</span>
+              <button id="btn-revert-cfd" class="hud-banner-btn" title="Revert all parameters to verified CFD run">Revert to Verified Run</button>
+            </div>
+            <!-- Verified Run Auto-Match Banner (Visible when user selects an impeller that has a verified CFD run) -->
+            <div id="hud-match-banner" class="hud-banner hud-banner-match" style="display: none;">
+              <span class="hud-banner-msg" id="hud-match-text">Verified CFD available</span>
+              <button id="btn-load-matched-run" class="hud-banner-btn" title="Load matching verified CFD run">Load Verified Run</button>
+            </div>
+            <!-- Solver Source Indicator Badge -->
+            <div id="hud-solver-source-badge" class="hud-solver-badge preview" title="Active CFD dataset source">
+              <span id="hud-solver-source-text">Geometry Preview (Correlations)</span>
+            </div>
+            <div class="hud-metric-row">
+              <span class="hud-metric-label" id="hud-label-power">Ref. Power (P)</span>
+              <span class="hud-metric-val" id="hud-val-power">1.28 W</span>
+            </div>
+            <div class="hud-metric-row">
+              <span class="hud-metric-label" id="hud-label-torque">Ref. Torque (M)</span>
+              <span class="hud-metric-val" id="hud-val-torque">0.0436 N&middot;m</span>
+            </div>
+            <div class="hud-metric-row">
+              <span class="hud-metric-label" id="hud-label-umax">Est. Peak Speed (u<sub>max</sub>)</span>
+              <span class="hud-metric-val" id="hud-val-umax">2.14 m/s</span>
+            </div>
+            <div class="hud-metric-row">
+              <span class="hud-metric-label">Dead-Zone Volume (V<sub>dead</sub>)</span>
+              <span class="hud-metric-val" id="hud-val-deadzone">8.4 %</span>
+            </div>
+            <div class="hud-metric-row">
+              <span class="hud-metric-label">Impeller Tip Speed (u<sub>tip</sub>)</span>
+              <span class="hud-metric-val" id="hud-val-utip">2.20 m/s</span>
+            </div>
+            <div class="hud-action-row" style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+              <button class="hud-pill-btn" id="btn-export-report-hud" style="width: 100%; justify-content: center; background: rgba(52, 168, 83, 0.2); border-color: rgba(52, 168, 83, 0.5); color: #81c995;" title="Download Reproducible Engineering Verification Report">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export Engineering Report
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Impeller Engineering Specification & Suitability Card -->
+          <div class="impeller-profile-docked-card" id="impeller-profile-card">
+            <div class="impeller-profile-header" id="impeller-profile-header">
+              <div class="impeller-profile-title-col">
+                <div class="impeller-profile-kicker">Impeller Engineering Specification</div>
+                <div class="impeller-profile-name" id="bpe-card-name">Rushton 6-Blade Disc Turbine (R-100)</div>
+              </div>
+              <button class="impeller-card-toggle-btn" id="btn-toggle-impeller-card" title="Collapse / Expand Specification">&#9662;</button>
+            </div>
+            <div class="impeller-profile-body" id="impeller-profile-body">
+              <div class="bpe-tags-row" id="bpe-card-tags">
+                <span class="bpe-tag bpe-tag-pill blue" id="bpe-tag-class">Open Radial Turbine</span>
+                <span class="bpe-tag bpe-tag-pill green" id="bpe-tag-baffles">Baffled Reactor</span>
+                <span class="bpe-tag bpe-tag-pill purple" id="bpe-tag-visc">&mu; &lt; 1,000 cP</span>
+              </div>
+              <div class="bpe-section-block">
+                <div class="bpe-sec-title">Flow Characteristics</div>
+                <div class="bpe-sec-text" id="bpe-card-principle">Discharges radially outward at blade centerline into dual upper and lower recirculation loops. Gas sparged below is channeled along disc and sheared in trailing vortices.</div>
+              </div>
+              <div class="bpe-section-block">
+                <div class="bpe-sec-title">Typical Applications</div>
+                <div class="bpe-sec-text" id="bpe-card-applications">Aerobic microbial fermentations (E. coli, Pichia, yeast) requiring high oxygen mass transfer rates.</div>
+              </div>
+              <div class="bpe-envelope-row">
+                <div class="bpe-env-box"><span class="env-lbl">Turbulent N<sub>p</sub></span><span class="env-val" id="bpe-env-np">5.0</span></div>
+                <div class="bpe-env-box"><span class="env-lbl">Pumping N<sub>Q</sub></span><span class="env-val" id="bpe-env-nq">0.72</span></div>
+                <div class="bpe-env-box"><span class="env-lbl">Metzner-Otto k<sub>s</sub></span><span class="env-val" id="bpe-env-ks">11.5</span></div>
+                <div class="bpe-env-box"><span class="env-lbl">Viscosity Limit</span><span class="env-val" id="bpe-env-visc-limit">&lt; 1,000 cP</span></div>
+              </div>
+              <!-- Live Engineering Suitability Alerts Box -->
+              <div class="bpe-suitability-box" id="bpe-suitability-box">
+                <div class="bpe-suit-title">Engineering Suitability Advisor</div>
+                <div id="bpe-suitability-alerts-list">
+                  <div class="bpe-alert-pill status-pass">Operating point is within standard design envelope.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Engineering Dimensions Overlay -->
+          <div id="dimensions-callout-layer" class="dimensions-callout-layer" style="display: none;">
+            <svg id="dimensions-svg-layer" class="dimensions-svg-overlay">
+              <defs>
+                <!-- Standard CAD Blue Marker Start/End -->
+                <marker id="cad-arrow-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 8 1.5 L 1.5 5 L 8 8.5 z" fill="#1A73E8" />
+                </marker>
+                <marker id="cad-arrow-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 1.5 1.5 L 8 5 L 1.5 8.5 z" fill="#1A73E8" />
+                </marker>
+                <!-- Close-Clearance Wall Gap Amber Marker Start/End -->
+                <marker id="cad-arrow-c-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 8 1.5 L 1.5 5 L 8 8.5 z" fill="#D97706" />
+                </marker>
+                <marker id="cad-arrow-c-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 1.5 1.5 L 8 5 L 1.5 8.5 z" fill="#D97706" />
+                </marker>
+                <!-- Impeller Span Hi Indigo Marker Start/End -->
+                <marker id="cad-arrow-hi-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 8 1.5 L 1.5 5 L 8 8.5 z" fill="#6366F1" />
+                </marker>
+                <marker id="cad-arrow-hi-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 1.5 1.5 L 8 5 L 1.5 8.5 z" fill="#6366F1" />
+                </marker>
+                <!-- Blade Width Teal Marker Start/End -->
+                <marker id="cad-arrow-w-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 8 1.5 L 1.5 5 L 8 8.5 z" fill="#0D9488" />
+                </marker>
+                <marker id="cad-arrow-w-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M 1.5 1.5 L 8 5 L 1.5 8.5 z" fill="#0D9488" />
+                </marker>
+              </defs>
+              <g id="svg-cad-dimensions-group">
+                <!-- DT Lines -->
+                <line id="svg-ext-dt-1" class="cad-ext-line" />
+                <line id="svg-ext-dt-2" class="cad-ext-line" />
+                <line id="svg-line-dt" class="cad-dim-line" marker-start="url(#cad-arrow-start)" marker-end="url(#cad-arrow-end)" />
+                <!-- HL Lines -->
+                <line id="svg-ext-hl-1" class="cad-ext-line" />
+                <line id="svg-ext-hl-2" class="cad-ext-line" />
+                <line id="svg-line-hl" class="cad-dim-line" marker-start="url(#cad-arrow-start)" marker-end="url(#cad-arrow-end)" />
+                <!-- Di1 Lines -->
+                <line id="svg-ext-di1-1" class="cad-ext-line" />
+                <line id="svg-ext-di1-2" class="cad-ext-line" />
+                <line id="svg-line-di1" class="cad-dim-line" marker-start="url(#cad-arrow-start)" marker-end="url(#cad-arrow-end)" />
+                <!-- C1 Lines -->
+                <line id="svg-ext-c1-1" class="cad-ext-line" />
+                <line id="svg-ext-c1-2" class="cad-ext-line" />
+                <line id="svg-line-c1" class="cad-dim-line" marker-start="url(#cad-arrow-start)" marker-end="url(#cad-arrow-end)" />
+                <!-- Hi Lines (Close-Clearance Impeller Span / Height) -->
+                <line id="svg-ext-hi-1" class="cad-ext-line-hi" />
+                <line id="svg-ext-hi-2" class="cad-ext-line-hi" />
+                <line id="svg-line-hi" class="cad-dim-line-hi" marker-start="url(#cad-arrow-hi-start)" marker-end="url(#cad-arrow-hi-end)" />
+                <!-- Wb Lines -->
+                <line id="svg-ext-wb-1" class="cad-ext-line" />
+                <line id="svg-ext-wb-2" class="cad-ext-line" />
+                <line id="svg-line-wb" class="cad-dim-line" marker-start="url(#cad-arrow-start)" marker-end="url(#cad-arrow-end)" />
+                <!-- c (Wall Clearance) Lines -->
+                <line id="svg-ext-c-1" class="cad-ext-line-c" />
+                <line id="svg-ext-c-2" class="cad-ext-line-c" />
+                <line id="svg-line-c" class="cad-dim-line-c" marker-start="url(#cad-arrow-c-start)" marker-end="url(#cad-arrow-c-end)" />
+                <line id="svg-line-c-in1" class="cad-dim-line-c" marker-end="url(#cad-arrow-c-end)" style="display: none;" />
+                <line id="svg-line-c-in2" class="cad-dim-line-c" marker-end="url(#cad-arrow-c-start)" style="display: none;" />
+                <!-- Wi (Impeller Width) Lines -->
+                <line id="svg-ext-wi-1" class="cad-ext-line-w" />
+                <line id="svg-ext-wi-2" class="cad-ext-line-w" />
+                <line id="svg-line-wi" class="cad-dim-line-w" marker-start="url(#cad-arrow-w-start)" marker-end="url(#cad-arrow-w-end)" />
+                <!-- Gap Lines -->
+                <line id="svg-ext-gap-1" class="cad-ext-line" />
+                <line id="svg-ext-gap-2" class="cad-ext-line" />
+                <line id="svg-line-gap" class="cad-dim-line" marker-start="url(#cad-arrow-start)" marker-end="url(#cad-arrow-end)" />
+              </g>
+            </svg>
+            <div class="dim-badge" id="dim-dt">D<sub>T</sub> = 0.45 m</div>
+            <div class="dim-badge" id="dim-hl">H<sub>L</sub> = 0.50 m</div>
+            <div class="dim-badge" id="dim-di1">D<sub>i1</sub> = 0.15 m (D<sub>T</sub>/3)</div>
+            <div class="dim-badge" id="dim-c1">C₁ = 0.14 m</div>
+            <div class="dim-badge dim-badge-hi" id="dim-hi" style="display: none;">H<sub>i</sub> = 0.29 m (Span)</div>
+            <div class="dim-badge" id="dim-wb" style="display: none;">W<sub>b</sub> = 45 mm</div>
+            <div class="dim-badge dim-badge-c" id="dim-c" style="display: none;">c = 15.0 mm</div>
+            <div class="dim-badge dim-badge-wi" id="dim-wi" style="display: none;">W<sub>i</sub> = 25 mm</div>
+            <div class="dim-badge" id="dim-gap" style="display: none;">&Delta;C = 0.24 m</div>
+          </div>
+
+                              <!-- Bottom Studio Controls HUD -->
+          <div class="bottom-studio-hud">
+            <button class="hud-pill-btn active" id="btn-toggle-rotation" title="Play/Pause Shaft Spin">
+              <span>&#9654; Spin Shaft</span>
+            </button>
+            <div class="studio-divider"></div>
+            <label class="studio-toggle">
+              <input type="checkbox" id="check-particles" checked>
+              <span>60 FPS Particles</span>
+            </label>
+            <label class="studio-toggle">
+              <input type="checkbox" id="check-streamlines" checked>
+              <span>Streamlines</span>
+            </label>
+            <label class="studio-toggle">
+              <input type="checkbox" id="check-3d-vectors" checked>
+              <span>3D Vectors</span>
+            </label>
+            <label class="studio-toggle">
+              <input type="checkbox" id="check-3d-slice">
+              <span>XZ Slice Plane</span>
+            </label>
+            <label class="studio-toggle">
+              <input type="checkbox" id="check-dimensions">
+              <span>Dimensions</span>
+            </label>
+            <label class="studio-toggle">
+              <input type="checkbox" id="check-shell-wire">
+              <span>Shell Wire</span>
+            </label>
+            <div class="studio-divider"></div>
+            <select class="select-input" id="select-colormap" style="width: 110px; padding: 3px 6px;">
+              <option value="turbo" selected>Turbo LUT</option>
+              <option value="jet">Jet / Fluent</option>
+              <option value="viridis">Viridis</option>
+              <option value="coolwarm">Coolwarm</option>
+            </select>
+          </div>
+
+          <!-- Calibrated Colorbar Legend -->
+          <div class="colorbar-legend">
+            <span class="colorbar-title">Velocity Magnitude |u| (m/s)</span>
+            <div class="colorbar-gradient" id="legend-gradient-bar"></div>
+            <div class="colorbar-ticks">
+              <span>0.00</span>
+              <span id="legend-mid-tick">1.05</span>
+              <span id="legend-max-tick">2.14</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW PANE 2: 2D Fluent Cross-Section & Slice Inspector
+             ================================================================ -->
+        <section class="view-pane" id="view-2d">
+          <div class="slice-toolbar">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="control-label">Plane:</span>
+              <div class="segmented-picker" id="slice-plane-picker">
+                <button class="segmented-option active" data-plane="xz">XZ Mid-Plane</button>
+                <button class="segmented-option" data-plane="yz">YZ Mid-Plane</button>
+                <button class="segmented-option" data-plane="xy_stage1">XY (Stage 1)</button>
+                <button class="segmented-option" id="btn-plane-xy-gap" data-plane="xy_gap">XY (Mid-Gap)</button>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+              <span class="control-label">Scalar Field:</span>
+              <select class="select-input" id="select-2d-field" style="min-width: 245px; width: auto;">
+                <option value="velocity_mag" selected>Velocity Magnitude |u|</option>
+                <option value="pressure">Static Pressure (p)</option>
+                <option value="tke">Turbulent Kinetic Energy (k)</option>
+                <option value="epsilon">Turbulent Dissipation (&epsilon;)</option>
+                <option value="kolmogorov_um">Kolmogorov Eddy Scale (&lambda;<sub>K</sub>, &mu;m)</option>
+                <option value="shear_stress_pa">Turbulent Shear Stress (&tau;, Pa)</option>
+              </select>
+
+              <div id="cell-safety-badge" class="cell-safety-badge safe" style="display: none;">
+                <span id="cell-safety-text">Safe for Mammalian CHO (&lambda;<sub>K</sub> &gt; 25 &mu;m)</span>
+              </div>
+
+              <label class="studio-toggle" style="margin-left: 6px;">
+                <input type="checkbox" id="check-2d-vectors" checked>
+                <span>Velocity Vectors</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="slice-canvas-wrapper" id="slice-canvas-container" style="display: flex; flex-direction: column; align-items: center;">
+            <canvas id="canvas-2d-slice" width="700" height="700"></canvas>
+            <div id="slice-tooltip">
+              <div class="tooltip-title">Fluent Field Probe</div>
+              <div class="tooltip-row"><span>Position (r, z):</span><span class="mono" id="tip-pos">-</span></div>
+              <div class="tooltip-row"><span>Velocity |u|:</span><span class="mono" id="tip-vel">-</span></div>
+              <div class="tooltip-row"><span>Static Pressure (p):</span><span class="mono" id="tip-pres">-</span></div>
+              <div class="tooltip-row"><span>TKE (k):</span><span class="mono" id="tip-tke">-</span></div>
+              <div class="tooltip-row"><span>Dissipation (&epsilon;):</span><span class="mono" id="tip-eps">-</span></div>
+              <div class="tooltip-row" id="row-tip-kolm" style="display: none;"><span>Kolmogorov Scale (&lambda;<sub>K</sub>):</span><span class="mono" id="tip-kolm">-</span></div>
+              <div class="tooltip-row" id="row-tip-shear" style="display: none;"><span>Shear Stress (&tau;):</span><span class="mono" id="tip-shear">-</span></div>
+            </div>
+            <!-- Calibrated Colorbar Legend for 2D Slice -->
+            <div class="colorbar-legend slice-colorbar-legend" id="slice-colorbar-legend" style="margin-top: 10px; position: static; max-width: 340px; width: 100%;">
+              <span class="colorbar-title" id="slice-colorbar-title">Velocity Magnitude |u| (m/s)</span>
+              <div class="colorbar-gradient" id="slice-legend-gradient-bar"></div>
+              <div class="colorbar-ticks">
+                <span id="slice-legend-min-tick">0.00</span>
+                <span id="slice-legend-mid-tick">1.05</span>
+                <span id="slice-legend-max-tick">2.14</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW PANE 3: Any-vs-Any Verified Fluent Run Comparator
+             ================================================================ -->
+        <section class="view-pane" id="view-compare">
+          <div class="comparator-container">
+
+            <!-- Comparator Top Toolbar -->
+            <div class="comparator-toolbar">
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <h3 style="margin: 0; font-size: 16px; font-weight: 600; color: var(--text-primary);">Run Comparator</h3>
+                  <span id="comparator-cached-count-chip" class="chip-tag-cached" style="background-color: var(--google-blue-container); color: var(--google-blue-on-container); font-size: 10px;">31 stored Fluent runs (8 passes basic checks)</span>
+                </div>
+                <p style="margin: 3px 0 0; font-size: 11px; color: var(--text-secondary);">
+                  Side-by-side comparison of converged Fluent runs.
+                </p>
+              </div>
+
+              <!-- Quick Shortcut Comparison Chips -->
+              <div class="cmp-shortcuts-row">
+                <span style="font-size: 11px; font-weight: 500; color: var(--text-secondary); margin-right: 4px;">Quick Pairs:</span>
+                <button class="btn-subtle cmp-shortcut-btn active" data-a="fluent_rush_flat_280rpm_1f9d1ae137f1" data-b="fluent_rush_flat_280rpm_dd6c74f598ba">Dual Wide vs Narrow</button>
+                <button class="btn-subtle cmp-shortcut-btn" data-a="fluent_rush_flat_250rpm_c5abfce9ad1c" data-b="fluent_smit_flat_250rpm_0bfbe7c7de0c">Rushton vs Smith CD-6</button>
+                <button class="btn-subtle cmp-shortcut-btn" data-a="fluent_pitc_elli_220rpm_432bbc081267" data-b="fluent_hydr_elli_250rpm_959ef9534ed6">Pitched Blade vs Hydrofoil</button>
+                <button class="btn-subtle cmp-shortcut-btn" data-a="fluent_rush_flat_250rpm_c5abfce9ad1c" data-b="fluent_anch_flat_40rpm_d12f32384b94">Rushton vs Anchor</button>
+                <button class="btn-subtle cmp-shortcut-btn" data-a="fluent_rush_flat_120rpm_05c5a8739b78" data-b="fluent_rush_flat_400rpm_f11532130aa6">RPM Sweep (120 vs 400 RPM)</button>
+                <button class="btn-subtle cmp-shortcut-btn" data-a="fluent_rush_flat_250rpm_c5abfce9ad1c" data-b="fluent_rush_flat_250rpm_37e0a7c99627">Viscosity Cavern (1 cP vs 3,000 cP)</button>
+              </div>
+
+              <!-- Color Scale Sync Toggle -->
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <button class="btn-subtle" id="btn-toggle-cmp-sync" title="Synchronize colorbar velocity scale between Case A and Case B">
+                  <span class="sync-dot active" style="width: 8px; height: 8px; border-radius: 50%; background: var(--google-green); display: inline-block;"></span>
+                  <span id="label-cmp-sync" style="font-size: 11.5px;">Scale: Synchronized</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Side-by-Side 2D Fluent XZ Cross-Sections Grid -->
+            <div class="compare-grid">
+
+              <!-- Column A -->
+              <div class="compare-col" id="col-run-a">
+                <div class="compare-header">
+                  <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                      <span class="compare-title" style="color: var(--google-blue);">Case A (Baseline Run)</span>
+                      <span class="chip-tag-cached" id="cmp-a-badge" style="background-color: var(--google-blue-container); color: var(--google-blue-on-container); font-size: 10px;">Verified Fluent</span>
+                    </div>
+                    <select class="select-input" id="select-compare-run-a" style="width: 100%;"></select>
+                  </div>
+                </div>
+
+                <div class="compare-canvas-box" id="box-compare-a" style="position: relative;">
+                  <canvas id="canvas-compare-a" width="420" height="360"></canvas>
+                  <div id="cmp-tooltip-a" class="slice-tooltip cmp-tooltip" style="display: none;"></div>
+                  <div class="cmp-colorbar-row" id="cmp-colorbar-a">
+                    <span class="mono" style="font-size: 10px;">0.0 m/s</span>
+                    <div class="cmp-colorbar-gradient" id="cmp-gradient-a"></div>
+                    <span class="mono" id="cmp-a-scale-max" style="font-size: 10px;">2.20 m/s</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column B -->
+              <div class="compare-col" id="col-run-b">
+                <div class="compare-header">
+                  <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                      <span class="compare-title" style="color: #EA4335;">Case B (Comparison Run)</span>
+                      <span class="chip-tag-cached" id="cmp-b-badge" style="background-color: rgba(234,67,53,0.12); color: #C5221F; font-size: 10px;">Verified Fluent</span>
+                    </div>
+                    <select class="select-input" id="select-compare-run-b" style="width: 100%;"></select>
+                  </div>
+                </div>
+
+                <div class="compare-canvas-box" id="box-compare-b" style="position: relative;">
+                  <canvas id="canvas-compare-b" width="420" height="360"></canvas>
+                  <div id="cmp-tooltip-b" class="slice-tooltip cmp-tooltip" style="display: none;"></div>
+                  <div class="cmp-colorbar-row" id="cmp-colorbar-b">
+                    <span class="mono" style="font-size: 10px;">0.0 m/s</span>
+                    <div class="cmp-colorbar-gradient" id="cmp-gradient-b"></div>
+                    <span class="mono" id="cmp-b-scale-max" style="font-size: 10px;">2.20 m/s</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Overlaid Axial Velocity Profile Chart -->
+            <div class="wb-card" style="margin-top: 16px;">
+              <div class="wb-card-header">
+                <div>
+                  <span class="wb-card-title">Overlaid Layer Velocity Profile across Tank Height (z/H)</span>
+                  <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+                    Comparing layer-averaged velocity speed &lang;u&rang;(z) from vessel floor (z/H = 0.0) to liquid free surface (z/H = 1.0).
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500;">
+                  <span style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 14px; height: 3px; background: var(--google-blue); display: inline-block; border-radius: 2px;"></span>
+                    <span id="legend-label-a">Case A</span>
+                  </span>
+                  <span style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 14px; height: 3px; background: #EA4335; display: inline-block; border-radius: 2px;"></span>
+                    <span id="legend-label-b">Case B</span>
+                  </span>
+                </div>
+              </div>
+
+              <div style="padding: 10px 14px 14px; width: 100%; box-sizing: border-box;">
+                <svg id="cmp-velocity-profile-svg" viewBox="0 0 880 220" style="width: 100%; height: 220px; display: block;"></svg>
+              </div>
+            </div>
+
+            <!-- Hydrodynamic & Energy Parity Matrix -->
+            <div class="wb-card" style="margin-top: 16px;">
+              <div class="wb-card-header">
+                <div>
+                  <span class="wb-card-title">Hydrodynamic &amp; Energy Parity Matrix</span>
+                  <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+                    Quantitative side-by-side comparison of 3D Navier-Stokes solver outputs with relative percentage deltas (&Delta; = (B - A) / A).
+                  </div>
+                </div>
+                <span class="status-badge" id="delta-p-badge" style="background-color: var(--google-blue-container); color: var(--google-blue-on-container); font-size: 11px; font-weight: 600;">&Delta;Power: 0.0%</span>
+              </div>
+
+              <div style="overflow-x: auto; padding: 4px 8px 12px;">
+                <table class="report-table" id="cmp-delta-table" style="width: 100%; border-collapse: collapse; font-size: 12.5px;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--border-color); text-align: left;">
+                      <th style="padding: 8px 12px; color: var(--text-secondary); font-weight: 600;">Hydrodynamic / Solver Parameter</th>
+                      <th style="padding: 8px 12px; color: var(--google-blue); font-weight: 600;" id="th-case-a">Case A</th>
+                      <th style="padding: 8px 12px; color: #EA4335; font-weight: 600;" id="th-case-b">Case B</th>
+                      <th style="padding: 8px 12px; text-align: right; color: var(--text-secondary); font-weight: 600;">Relative Delta (&Delta; %)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cmp-delta-tbody">
+                    <!-- Populated dynamically by updateComparatorView() in app.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW PANE 4: Theory & Equations
+             ================================================================ -->
+        <section class="view-pane" id="view-theory">
+          <div class="theory-workspace">
+            <header class="theory-header">
+              <div>
+                <h2>Theory &amp; Equations</h2>
+                <p id="theory-notice">Select a configuration to inspect its engineering references.</p>
+              </div>
+              <span class="theory-scope-badge" id="theory-scope-badge">Engineering reference</span>
+            </header>
+
+            <!-- Phase C: Scale-Up Similitude & Reactor Sizing Calculator -->
+            <div class="scaleup-card" id="scaleup-card">
+              <div class="scaleup-header">
+                <div>
+                  <h3 class="wb-card-title">Bioprocess Scale-Up Calculator</h3>
+                  <p style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+                    Geometric scale-up from baseline vessel volume.
+                  </p>
+                </div>
+                <span class="wb-card-badge" id="scaleup-lambda-badge">&lambda; = 2.154 (10x Volume)</span>
+              </div>
+
+              <div class="scaleup-controls-bar">
+                <div class="scaleup-ctrl-item">
+                  <label class="control-label">Target Volume Scale:</label>
+                  <select class="select-input select-scaleup-volume" id="select-scaleup-volume" name="scaleup-ratio-select" style="width: 220px;">
+                    <option value="10" selected>10x Pilot Scale (~500 L)</option>
+                    <option value="50">50x Demonstration (~2,500 L)</option>
+                    <option value="100">100x Industrial (~5,000 L)</option>
+                    <option value="custom">Custom Volume Ratio</option>
+                  </select>
+                </div>
+
+                <div class="scaleup-ctrl-item" id="scaleup-custom-ratio-box" style="display: none;">
+                  <label class="control-label">Custom Ratio (V₂/V₁):</label>
+                  <input type="number" class="text-input" id="scaleup-custom-ratio-input" min="1.1" max="1000" step="1" value="10" style="width: 90px;">
+                </div>
+
+                <div class="scaleup-ctrl-item">
+                  <label class="control-label">Preserved Similarity Criterion:</label>
+                  <select class="select-input select-scaleup-criterion" id="select-scaleup-criterion" name="scaleup-criterion-select" style="width: 270px;">
+                    <option value="constant_p_v" selected>Constant Power / Volume (P/V<sub>L</sub> = const)</option>
+                    <option value="constant_kla">Constant Mass Transfer (k<sub>L</sub>a = const)</option>
+                    <option value="constant_tip_speed">Constant Tip Speed (u<sub>tip</sub> = const)</option>
+                    <option value="constant_reynolds">Constant Reynolds Number (Re<sub>i</sub> = const)</option>
+                    <option value="constant_mixing_time">Equal Blend Mixing Time (t<sub>95</sub> = const)</option>
+                  </select>
+                </div>
+
+                <div class="scaleup-ctrl-item">
+                  <label class="control-label">Scale from:</label>
+                  <div class="segmented-picker" id="scaleup-source-picker">
+                    <button class="segmented-option active" data-source="correlation" type="button">Engineering correlation</button>
+                    <button class="segmented-option" data-source="active_cfd" type="button">Active CFD run</button>
+                  </div>
+                </div>
+
+                <div class="scaleup-ctrl-item" style="align-self: flex-end;">
+                  <button class="primary-btn" id="btn-run-scaleup" style="padding: 7px 16px;">
+                    Recompute Scale-Up
+                  </button>
+                </div>
+              </div>
+
+              <!-- Scale-Up Baseline Source Banner (DECISION-04) -->
+              <div id="scaleup-source-banner" style="margin: 10px 0; font-size: 13px; font-weight: 500; color: var(--text-primary); padding: 8px 12px; background: var(--surface-container); border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
+                <span>Baseline Power Source: <strong id="scaleup-source-text">Engineering correlation (P = 19.45 W)</strong></span>
+                <span id="scaleup-cfd-reference-note" style="font-size: 11px; color: var(--text-secondary);">Active CFD solve: 14.05 W</span>
+              </div>
+
+              <!-- Side-by-Side Comparison Table -->
+              <div class="scaleup-table-container">
+                <table class="scaleup-table" id="scaleup-results-table">
+                  <thead>
+                    <tr>
+                      <th>Engineering Metric</th>
+                      <th>Scale 1 (Baseline)</th>
+                      <th>Scale 2 (Target)</th>
+                      <th>Scaling Ratio (S₂/S₁)</th>
+                      <th>Similitude Rule</th>
+                    </tr>
+                  </thead>
+                  <tbody id="scaleup-table-body">
+                    <!-- Populated dynamically via /api/theory/scaleup -->
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Scale-Up Insights Callout -->
+              <div class="scaleup-insights-box" id="scaleup-insights-box">
+                <strong>Bioprocess Similitude Insights:</strong>
+                <ul id="scaleup-insights-list">
+                  <li>Scaling at constant volumetric power (P/V<sub>L</sub>) preserves oxygen mass transfer capability (k<sub>L</sub>a).</li>
+                  <li>Tip speed increases by &lambda;<sup>1/3</sup>, which increases maximum shear stress around impeller blade tips.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="theory-cards-grid" id="theory-cards">
+              <div class="theory-empty">Loading equations for the active configuration…</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW PANE 5: Live Fluent Solver & Residuals
+             ================================================================ -->
+        <section class="view-pane" id="view-residuals">
+          <div class="residuals-container">
+
+            <!-- 4-Stage Google Progress Stepper -->
+            <div class="stepper-container">
+              <div class="step-item active-blue" id="step-1">
+                <div class="step-number">1</div>
+                <div>
+                  <strong style="font-size: 13px;">Gmsh Tetrahedral Mesher</strong>
+                  <div style="font-size: 11px; color: var(--text-secondary);">Conformal MRF Zones</div>
+                </div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item" id="step-2">
+                <div class="step-number">2</div>
+                <div>
+                  <strong style="font-size: 13px;">Fluent v261 Engine</strong>
+                  <div style="font-size: 11px; color: var(--text-secondary);">Boundary Conditions</div>
+                </div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item" id="step-3">
+                <div class="step-number">3</div>
+                <div>
+                  <strong style="font-size: 13px;">Navier-Stokes Iterations</strong>
+                  <div style="font-size: 11px; color: var(--text-secondary);">Pressure-Velocity Coupling</div>
+                </div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-item active-green" id="step-4">
+                <div class="step-number">4</div>
+                <div>
+                  <strong style="font-size: 13px;">Field Extraction</strong>
+                  <div style="font-size: 11px; color: var(--text-secondary);">3D Streamlines &amp; Slices</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Convergence Chart Card -->
+            <div class="chart-card">
+              <div class="chart-header">
+                <div>
+                  <h3 class="wb-card-title">Navier-Stokes Convergence Residuals</h3>
+                  <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">
+                    Logarithmic normalized residuals for continuity, velocity components, and turbulence quantities.
+                  </p>
+                </div>
+                <div class="chart-legend-row">
+                  <span class="legend-badge"><span class="legend-color-dot" style="background-color: #EA4335;"></span> Continuity</span>
+                  <span class="legend-badge"><span class="legend-color-dot" style="background-color: #4285F4;"></span> X-Velocity</span>
+                  <span class="legend-badge"><span class="legend-color-dot" style="background-color: #34A853;"></span> Y-Velocity</span>
+                  <span class="legend-badge"><span class="legend-color-dot" style="background-color: #FBBC04;"></span> Z-Velocity</span>
+                  <span class="legend-badge"><span class="legend-color-dot" style="background-color: #8E24AA;"></span> k (TKE)</span>
+                  <span class="legend-badge"><span class="legend-color-dot" style="background-color: #00897B;"></span> &epsilon;</span>
+                </div>
+              </div>
+
+              <svg id="residuals-svg-chart" viewBox="0 0 900 280">
+                <!-- Grid lines and axes drawn by JS -->
+              </svg>
+            </div>
+
+            <!-- Verification & Solver Evidence Summary Card -->
+            <div class="chart-card" id="solver-evidence-summary-card" style="margin-top: 16px;">
+              <div class="chart-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 14px;">
+                <div>
+                  <h3 class="wb-card-title">CFD Solver Evidence &amp; Convergence</h3>
+                  <p style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+                    Fluent 2026 R1 residuals, torque stability, and parity checks.
+                  </p>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <span class="provenance-badge-verified" id="evidence-provenance-badge">Verified Fluent Result</span>
+                  <button class="nav-pill-btn" id="btn-export-report-evidence" style="background: rgba(52, 168, 83, 0.15); border: 1px solid rgba(52, 168, 83, 0.4); color: #81c995; font-size: 12px; padding: 4px 10px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Export Report
+                  </button>
+                </div>
+              </div>
+
+              <!-- Verification Artifacts Checklist Badges -->
+              <div class="evidence-artifacts-grid" id="evidence-artifacts-checklist" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;">
+                <div class="evidence-pill" id="badge-mesh-cells"><span class="ev-dot green"></span> Mesh: <strong id="ev-mesh-text">64,172 cells / 14,342 nodes</strong></div>
+                <div class="evidence-pill" id="badge-case-data"><span class="ev-dot green"></span> Native Files: <strong id="ev-casedata-text">fluent_case.cas.h5 &amp; .dat.h5 (Verified)</strong></div>
+                <div class="evidence-pill" id="badge-manifest"><span class="ev-dot green"></span> Provenance: <strong id="ev-manifest-text">run_manifest.json (SHA-256 Valid)</strong></div>
+                <div class="evidence-pill" id="badge-drift"><span class="ev-dot green"></span> Torque Drift: <strong id="ev-drift-text">0.45% (Stabilized)</strong></div>
+              </div>
+
+              <!-- Side-by-Side Verification Table -->
+              <div class="scaleup-table-container">
+                <table class="scaleup-table" id="evidence-comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Physical Quantity</th>
+                      <th>Ansys Fluent 2026 R1 CFD</th>
+                      <th>Engineering Reference</th>
+                      <th>Parity / Deviation</th>
+                      <th>Provenance Source</th>
+                    </tr>
+                  </thead>
+                  <tbody id="evidence-table-body">
+                    <tr>
+                      <td><strong>Agitator Shaft Torque (M)</strong></td>
+                      <td><strong id="ev-cfd-torque">0.7780 N&middot;m</strong></td>
+                      <td><strong id="ev-ref-torque">0.7430 N&middot;m</strong></td>
+                      <td id="ev-parity-torque" style="color: #81c995;">+4.7% (Within &plusmn;10% band)</td>
+                      <td><code style="color: #8ab4f8;">fluent_solver (3D Moment)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mechanical Shaft Power (P)</strong></td>
+                      <td><strong id="ev-cfd-power">20.37 W</strong></td>
+                      <td><strong id="ev-ref-power">19.45 W</strong></td>
+                      <td id="ev-parity-power" style="color: #81c995;">+4.7% (Within &plusmn;10% band)</td>
+                      <td><code style="color: #8ab4f8;">fluent_solver (Force Integral)</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Power Number (N<sub>p</sub>)</strong></td>
+                      <td><strong id="ev-cfd-np">5.235</strong></td>
+                      <td><strong id="ev-ref-np">5.000</strong></td>
+                      <td id="ev-parity-np" style="color: #81c995;">+4.7%</td>
+                      <td><code style="color: #8ab4f8;">fluent_solver</code> vs Standard N<sub>p</sub></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Peak Domain Velocity (u<sub>max</sub>)</strong></td>
+                      <td><strong id="ev-cfd-umax">1.8327 m/s</strong></td>
+                      <td><strong id="ev-ref-umax">1.8330 m/s (u<sub>tip</sub>)</strong></td>
+                      <td id="ev-parity-umax" style="color: #81c995;">1.00 &times; u<sub>tip</sub></td>
+                      <td><code style="color: #8ab4f8;">fluent_field</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Stagnant Dead-Zone Volume (V<sub>dead</sub>)</strong></td>
+                      <td><strong id="ev-cfd-deadzone">5.6%</strong></td>
+                      <td><strong>&lt; 10.0%</strong></td>
+                      <td style="color: #81c995;">Balanced Circulation</td>
+                      <td><code style="color: #8ab4f8;">fluent_field (&lt;0.015 v_tip)</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Console Log Output -->
+            <div class="console-card" id="solver-console-log">
+              [SYSTEM] Ansys Fluent 2026 R1 CFD Studio ready.
+              [CACHE] Loaded pre-computed CFD bundles from disk.
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- ====================================================================
+         Solve Progress Overlay Modal
+         ==================================================================== -->
+    <div id="solve-overlay">
+      <div class="solve-modal">
+        <div class="modal-spinner"></div>
+        <div>
+          <h3 class="modal-title" id="modal-title">Solving in Ansys Fluent 2026 R1</h3>
+          <p class="modal-desc" id="modal-desc">
+            Generating 3D conformal mesh and launching PyFluent solver...
+          </p>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar-fill" id="modal-progress-bar"></div>
+        </div>
+        <div class="mono" style="font-size: 13px; color: var(--text-secondary);" id="modal-iter-readout">
+          Iteration 0 / 40
+        </div>
+        <div id="modal-abort-container" style="margin-top: 14px;">
+          <button id="btn-abort-solve" class="btn-abort-solve" title="Abort running Fluent simulation and release solver lock">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Cancel / Abort Simulation
+          </button>
+        </div>
+        <div id="modal-actions" style="margin-top: 14px; display: none;">
+          <button id="btn-close-solve-overlay" class="btn btn-secondary" style="padding: 6px 18px; border-radius: 6px; cursor: pointer;">Close / Dismiss</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         Impeller Engineering Library Modal
+         ==================================================================== -->
+    <div id="library-modal" class="impeller-library-modal-backdrop" style="display: none;">
+      <div class="impeller-library-modal-dialog">
+        <div class="impeller-library-header">
+          <div>
+            <div class="google-brand-mark" style="display: inline-flex; vertical-align: middle; margin-right: 8px;">
+              <div class="brand-dot blue"></div><div class="brand-dot red"></div><div class="brand-dot yellow"></div><div class="brand-dot green"></div>
+            </div>
+            <h2 style="display: inline-block; vertical-align: middle; font-size: 18px; font-weight: 700;">Impeller Engineering Library</h2>
+            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+              Geometry, operating envelope, flow behavior, and design trade-offs
+            </p>
+          </div>
+          <button class="modal-close-btn" id="btn-close-library">&times;</button>
+        </div>
+        <div class="library-tabs-bar">
+          <button class="library-tab-btn active" data-stab="tab-all-impellers">16-Impeller Catalog</button>
+          <button class="library-tab-btn" data-stab="tab-standard-ratios">Design Reference Standards</button>
+          <button class="library-tab-btn" data-stab="tab-engineering-matrix">Engineering Matrix</button>
+        </div>
+        <div class="library-content-area">
+          <div class="library-pane active" id="tab-all-impellers">
+            <div class="impeller-encyclopedia-grid" id="encyclopedia-cards-container">
+              <!-- Populated dynamically from GET /api/bpe/catalog -->
+            </div>
+          </div>
+          <div class="library-pane" id="tab-standard-ratios">
+            <div class="library-table-wrapper" id="standard-ratios-table-container">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+          <div class="library-pane" id="tab-engineering-matrix">
+            <div class="library-table-wrapper" id="engineering-matrix-table-container">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main JavaScript Application -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
